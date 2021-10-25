@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Barbell</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_history">History</string>
+    <string name="title_workout">Workout</string>
+    <string name="title_exercises">Exercises</string>
+    <string name="title_measure">Measure</string>
+    <string name="settings">settings</string>
+    <string name="calendar">calendar</string>
+    <string name="add">add</string>
+    <string name="filter">filter</string>
+    <string name="search">search</string>
+</resources>
