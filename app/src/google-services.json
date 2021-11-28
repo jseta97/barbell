@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "630839074700",
+    "project_id": "barbell-437f0",
+    "storage_bucket": "barbell-437f0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:630839074700:android:59105422cb8bb74721c0a9",
+        "android_client_info": {
+          "package_name": "pl.polsl.barbell"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "630839074700-a94d8nvu040rp3gtbondn11gn7n634qo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQko1vqedMIjpnFir36qjDdMWfGk_ja6k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "630839074700-a94d8nvu040rp3gtbondn11gn7n634qo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
