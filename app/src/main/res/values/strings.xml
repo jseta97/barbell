@@ -10,4 +10,15 @@
     <string name="add">add</string>
     <string name="filter">filter</string>
     <string name="search">search</string>
+    <string name="element_text">Exercise</string>
+    <string name="name_key">name_key</string>
+    <string name="username_key">username_key</string>
+    <string name="email_key">email_key</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="back">back</string>
+    <string name="Settings">Settings</string>
+    <string name="name">Name</string>
+    <string name="username">Username</string>
+    <string name="email">Email</string>
 </resources>
