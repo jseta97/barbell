@@ -2,29 +2,41 @@ package pl.polsl.barbell.ui.exercises
 
 import android.os.Bundle
 import android.view.*
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import pl.polsl.barbell.R
+import pl.polsl.barbell.databinding.*
+import pl.polsl.barbell.model.Exercise
+import kotlin.random.Random
 
 class ExercisesFragment : Fragment() {
 
-    private lateinit var exercisesViewModel: ExercisesViewModel
+    protected var _binding: FragmentExercisesBinding? =null
+    protected val binding get() = _binding!!
+
+    private val exercisesViewModel: ExercisesViewModel by activityViewModels()
+
+    private val adapter = ExercisesAdapter(arrayListOf())
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        exercisesViewModel =
-                ViewModelProvider(this).get(ExercisesViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_exercises, container, false)
-        val textView: TextView = root.findViewById(R.id.text_exercises)
-        exercisesViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-        return root
+        _binding = FragmentExercisesBinding.inflate(inflater, container, false)
+        setHasOptionsMenu(true)
+        observeViewModel()
+        binding.exercisesList.layoutManager = GridLayoutManager(context, 1, RecyclerView.VERTICAL, false)
+        binding.exercisesList.adapter = adapter
+
+        binding.swipeRefresh.setOnRefreshListener {
+            exercisesViewModel.addExercise(generateRandom())
+            binding.swipeRefresh.isRefreshing = false
+        }
+
+        return binding.root
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,5 +65,25 @@ class ExercisesFragment : Fragment() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+    protected open fun observeViewModel() {
+        exercisesViewModel.addExercise(generateRandom())
+        //exercisesViewModel.getExercises()
+        exercisesViewModel.exercisesList.observe(viewLifecycleOwner){
+            adapter.updateExercisesList(it)
+        }
+    }
+
+    fun generateRandom(): MutableList<Exercise> {
+        val list: MutableList<Exercise> = ArrayList()
+        for (i in 1..20) {
+            list.add(Exercise(
+                    Random.nextInt(0, 100).toString(),
+                    Random.nextInt(0, 100).toString(),
+                    Random.nextInt(0, 100).toString(),
+                    Random.nextInt(0, 100).toString()))
+        }
+        return list
+    }
+
 
 }
