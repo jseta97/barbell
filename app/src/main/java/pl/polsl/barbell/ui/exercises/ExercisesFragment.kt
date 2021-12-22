@@ -13,7 +13,7 @@ import kotlin.random.Random
 
 class ExercisesFragment : Fragment() {
 
-    protected var _binding: FragmentExercisesBinding? =null
+    protected var _binding: FragmentExercisesBinding? = null
     protected val binding get() = _binding!!
 
     private val exercisesViewModel: ExercisesViewModel by activityViewModels()
@@ -21,18 +21,19 @@ class ExercisesFragment : Fragment() {
     private val adapter = ExercisesAdapter(arrayListOf())
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentExercisesBinding.inflate(inflater, container, false)
         setHasOptionsMenu(true)
         observeViewModel()
-        binding.exercisesList.layoutManager = GridLayoutManager(context, 1, RecyclerView.VERTICAL, false)
+        binding.exercisesList.layoutManager =
+            GridLayoutManager(context, 1, RecyclerView.VERTICAL, false)
         binding.exercisesList.adapter = adapter
 
         binding.swipeRefresh.setOnRefreshListener {
-            exercisesViewModel.addExercise(generateRandom())
+            exercisesViewModel.getExercises()
             binding.swipeRefresh.isRefreshing = false
         }
 
@@ -59,30 +60,27 @@ class ExercisesFragment : Fragment() {
                 true
             }
             R.id.action_add -> {
-                // navigate to add screen
+                exercisesViewModel.addExercise(generateRandom())
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
+
     protected open fun observeViewModel() {
-        exercisesViewModel.addExercise(generateRandom())
-        //exercisesViewModel.getExercises()
-        exercisesViewModel.exercisesList.observe(viewLifecycleOwner){
+        exercisesViewModel.getExercises()
+        exercisesViewModel.exercisesList.observe(viewLifecycleOwner) {
             adapter.updateExercisesList(it)
         }
     }
 
-    fun generateRandom(): MutableList<Exercise> {
-        val list: MutableList<Exercise> = ArrayList()
-        for (i in 1..20) {
-            list.add(Exercise(
-                    Random.nextInt(0, 100).toString(),
-                    Random.nextInt(0, 100).toString(),
-                    Random.nextInt(0, 100).toString(),
-                    Random.nextInt(0, 100).toString()))
-        }
-        return list
+    fun generateRandom(): Exercise {
+        return Exercise.Builder(
+            Random.nextInt(0, 100).toString(),
+            Random.nextInt(0, 100).toString(),
+            Random.nextInt(0, 100).toString(),
+            Random.nextInt(0, 100).toString()
+        ).build()
     }
 
 

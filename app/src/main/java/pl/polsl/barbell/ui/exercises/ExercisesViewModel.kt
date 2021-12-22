@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import pl.polsl.barbell.model.Exercise
+import pl.polsl.barbell.repository.FirestoreProvider
 
 class ExercisesViewModel : ViewModel() {
 
@@ -12,12 +13,12 @@ class ExercisesViewModel : ViewModel() {
         get() = _exercises_list
 
     fun getExercises() {
-        /*FirestoreProvider.instance.getExercises() {
+        FirestoreProvider.instance.getExercises() {
             _exercises_list.postValue(it)
-        }*/
+        }
     }
 
-    fun addExercise(exercise: List<Exercise>) {
-        _exercises_list.postValue(exercise)
+    fun addExercise(exercise: Exercise) {
+        FirestoreProvider.instance.addExercise(exercise)
     }
 }
