@@ -1,14 +1,24 @@
 package pl.polsl.barbell
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import androidx.activity.viewModels
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import pl.polsl.barbell.login.SignInActivity
+import pl.polsl.barbell.ui.profile.ProfileViewModel
 
 class MainActivity : AppCompatActivity() {
+
+    private val viewModel: ProfileViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
         val navController = findNavController(R.id.nav_host_fragment)
+        checkUser(navController)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
@@ -30,5 +41,20 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+    }
+
+    private fun checkUser(navController: NavController) {
+        viewModel.setUser(Firebase.auth.currentUser?.uid.toString()) {
+            when {
+                Firebase.auth.currentUser == null -> {
+                    val intent = Intent(this, SignInActivity::class.java)
+                    startActivity(intent)
+                }
+                /*viewModel.authenticatedUser.value == null -> {
+                    navController.navigate(R.id.action_navigation_profile_to_settingsFragment)
+                }*/
+            }
+
+        }
     }
 }

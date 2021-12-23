@@ -21,4 +21,8 @@
     <string name="name">Name</string>
     <string name="username">Username</string>
     <string name="email">Email</string>
+    <string name="email_address">Email address</string>
+    <string name="password">Password</string>
+    <string name="repeat_password">Repeat password</string>
+    <string name="privacy_policy">I accept privacy policy.</string>
 </resources>
