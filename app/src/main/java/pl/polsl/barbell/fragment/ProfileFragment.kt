@@ -1,4 +1,4 @@
-package pl.polsl.barbell.ui.profile
+package pl.polsl.barbell.fragment
 
 import android.os.Bundle
 import android.view.*
@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import pl.polsl.barbell.R
+import pl.polsl.barbell.viewModel.ProfileViewModel
 
 class ProfileFragment : Fragment() {
 
@@ -22,7 +23,7 @@ class ProfileFragment : Fragment() {
                 ViewModelProvider(this).get(ProfileViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_profile, container, false)
         val textView: TextView = root.findViewById(R.id.text_profile)
-        profileViewModel.text.observe(viewLifecycleOwner, Observer {
+        profileViewModel.text.observe(viewLifecycleOwner, {
             textView.text = it
         })
         return root

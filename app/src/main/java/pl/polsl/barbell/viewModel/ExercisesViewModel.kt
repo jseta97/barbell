@@ -1,4 +1,4 @@
-package pl.polsl.barbell.ui.exercises
+package pl.polsl.barbell.viewModel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

@@ -1,4 +1,4 @@
-package pl.polsl.barbell.ui.measure
+package pl.polsl.barbell.fragment
 
 import android.os.Bundle
 import android.view.*
@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import pl.polsl.barbell.R
+import pl.polsl.barbell.viewModel.MeasureViewModel
 
 class MeasureFragment : Fragment() {
 
@@ -21,7 +22,7 @@ class MeasureFragment : Fragment() {
                 ViewModelProvider(this).get(MeasureViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_measure, container, false)
         val textView: TextView = root.findViewById(R.id.text_measure)
-        measureViewModel.text.observe(viewLifecycleOwner, Observer {
+        measureViewModel.text.observe(viewLifecycleOwner, {
             textView.text = it
         })
         return root

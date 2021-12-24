@@ -1,8 +1,6 @@
-package pl.polsl.barbell.ui.profile
+package pl.polsl.barbell.fragment
 
 import android.os.Bundle
-import android.view.*
-import android.widget.Toolbar
 import androidx.activity.addCallback
 import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceFragmentCompat

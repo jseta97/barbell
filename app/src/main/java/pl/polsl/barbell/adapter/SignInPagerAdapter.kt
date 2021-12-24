@@ -1,11 +1,13 @@
-package pl.polsl.barbell.login
+package pl.polsl.barbell.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import pl.polsl.barbell.fragment.LoginFragment
+import pl.polsl.barbell.fragment.RegisterFragment
 
 class SignInPagerAdapter(fragmentActivity: FragmentActivity, private val itemsCount: Int) :
-    FragmentStateAdapter(fragmentActivity) {
+        FragmentStateAdapter(fragmentActivity) {
 
     override fun getItemCount(): Int {
         return itemsCount

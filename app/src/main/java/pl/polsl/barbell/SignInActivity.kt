@@ -1,11 +1,11 @@
-package pl.polsl.barbell.login
+package pl.polsl.barbell
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import pl.polsl.barbell.R
+import pl.polsl.barbell.adapter.SignInPagerAdapter
 import pl.polsl.barbell.databinding.ActivitySignInBinding
 
 class SignInActivity : AppCompatActivity() {
@@ -26,8 +26,8 @@ class SignInActivity : AppCompatActivity() {
         val viewPagerAdapter = SignInPagerAdapter(this, binding.tabsLogin.tabCount)
         binding.loginPager.adapter = viewPagerAdapter
         TabLayoutMediator(
-            binding.tabsLogin,
-            binding.loginPager
+                binding.tabsLogin,
+                binding.loginPager
         ) { tab: TabLayout.Tab, position: Int ->
             when (position) {
                 0 -> {

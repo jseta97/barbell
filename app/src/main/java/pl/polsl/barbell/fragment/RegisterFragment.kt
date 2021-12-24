@@ -1,4 +1,4 @@
-package pl.polsl.barbell.login
+package pl.polsl.barbell.fragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,6 +10,7 @@ import androidx.fragment.app.activityViewModels
 import com.google.android.material.snackbar.Snackbar
 import pl.polsl.barbell.MainActivity
 import pl.polsl.barbell.databinding.FragmentRegisterBinding
+import pl.polsl.barbell.viewModel.LoginViewModel
 
 class RegisterFragment : Fragment(), LoginViewModel.RegisterResultListener {
 
@@ -20,8 +21,8 @@ class RegisterFragment : Fragment(), LoginViewModel.RegisterResultListener {
 
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View {
         _binding = FragmentRegisterBinding.inflate(inflater, container, false)
         return binding.root
@@ -37,15 +38,15 @@ class RegisterFragment : Fragment(), LoginViewModel.RegisterResultListener {
         binding.registerButton.setOnClickListener {
             if (binding.policyButton.isChecked) {
                 viewModel.registerUserWithEmailAndPassword(
-                    binding.registerEmail.editText?.text.toString(), //email address
-                    binding.registerPassword.editText?.text.toString(), //password
-                    binding.registerPassword2.editText?.text.toString() //repeated password
+                        binding.registerEmail.editText?.text.toString(), //email address
+                        binding.registerPassword.editText?.text.toString(), //password
+                        binding.registerPassword2.editText?.text.toString() //repeated password
                 )
             } else {
                 Snackbar.make(
-                    binding.root,
-                    "You have to accept privacy policy first.",
-                    Snackbar.LENGTH_SHORT
+                        binding.root,
+                        "You have to accept privacy policy first.",
+                        Snackbar.LENGTH_SHORT
                 ).show()
             }
         }
@@ -75,9 +76,9 @@ class RegisterFragment : Fragment(), LoginViewModel.RegisterResultListener {
 
     override fun onUserAlreadyExists() {
         Snackbar.make(
-            binding.root,
-            "Account with this email already exists. You can log in.",
-            Snackbar.LENGTH_SHORT
+                binding.root,
+                "Account with this email already exists. You can log in.",
+                Snackbar.LENGTH_SHORT
         ).show()
     }
 }

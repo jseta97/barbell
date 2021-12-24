@@ -1,4 +1,4 @@
-package pl.polsl.barbell.ui.exercises
+package pl.polsl.barbell.fragment
 
 import android.os.Bundle
 import android.view.*
@@ -7,8 +7,10 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import pl.polsl.barbell.R
+import pl.polsl.barbell.adapter.ExercisesAdapter
 import pl.polsl.barbell.databinding.*
 import pl.polsl.barbell.model.Exercise
+import pl.polsl.barbell.viewModel.ExercisesViewModel
 import kotlin.random.Random
 
 class ExercisesFragment : Fragment() {
@@ -21,15 +23,15 @@ class ExercisesFragment : Fragment() {
     private val adapter = ExercisesAdapter(arrayListOf())
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View {
         _binding = FragmentExercisesBinding.inflate(inflater, container, false)
         setHasOptionsMenu(true)
         observeViewModel()
         binding.exercisesList.layoutManager =
-            GridLayoutManager(context, 1, RecyclerView.VERTICAL, false)
+                GridLayoutManager(context, 1, RecyclerView.VERTICAL, false)
         binding.exercisesList.adapter = adapter
 
         binding.swipeRefresh.setOnRefreshListener {
@@ -67,7 +69,7 @@ class ExercisesFragment : Fragment() {
         }
     }
 
-    protected open fun observeViewModel() {
+    protected fun observeViewModel() {
         exercisesViewModel.getExercises()
         exercisesViewModel.exercisesList.observe(viewLifecycleOwner) {
             adapter.updateExercisesList(it)
@@ -76,10 +78,10 @@ class ExercisesFragment : Fragment() {
 
     fun generateRandom(): Exercise {
         return Exercise.Builder(
-            Random.nextInt(0, 100).toString(),
-            Random.nextInt(0, 100).toString(),
-            Random.nextInt(0, 100).toString(),
-            Random.nextInt(0, 100).toString()
+                Random.nextInt(0, 100).toString(),
+                Random.nextInt(0, 100).toString(),
+                Random.nextInt(0, 100).toString(),
+                Random.nextInt(0, 100).toString()
         ).build()
     }
 

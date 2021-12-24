@@ -35,16 +35,16 @@ class FirestoreProvider private constructor() {
 
     fun listenForUser(uuid: String, callback: (User?) -> Unit) {
         db.collection(UsersContract.COLLECTION_NAME)
-            .document(uuid)
-            .addSnapshotListener { value, error ->
-                if (error != null) {
-                    Log.w(TAG, "Listen failed.", error)
-                    callback(null)
-                    return@addSnapshotListener
-                } else {
-                    callback(value?.toObject<User>())
+                .document(uuid)
+                .addSnapshotListener { value, error ->
+                    if (error != null) {
+                        Log.w(TAG, "Listen failed.", error)
+                        callback(null)
+                        return@addSnapshotListener
+                    } else {
+                        callback(value?.toObject<User>())
+                    }
                 }
-            }
     }
 
     fun addExercise(exercise: Exercise) {
@@ -72,10 +72,10 @@ class FirestoreProvider private constructor() {
             }
             callback(exercises)
         }
-            .addOnFailureListener {
-                Log.w(TAG, "Listen failed.", it.cause)
-                callback(null)
-            }
+                .addOnFailureListener {
+                    Log.w(TAG, "Listen failed.", it.cause)
+                    callback(null)
+                }
     }
 
     private object SingletonHolder {

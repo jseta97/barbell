@@ -1,13 +1,13 @@
-package pl.polsl.barbell.ui.history
+package pl.polsl.barbell.viewModel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class HistoryViewModel : ViewModel() {
+class WorkoutViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is history Fragment"
+        value = "This is workout Fragment"
     }
     val text: LiveData<String> = _text
 }

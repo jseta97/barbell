@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="pl.polsl.barbell.ui.profile.ProfileFragment"
+        android:name="pl.polsl.barbell.fragment.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" >
         <action
@@ -17,28 +17,28 @@
 
     <fragment
         android:id="@+id/navigation_history"
-        android:name="pl.polsl.barbell.ui.history.HistoryFragment"
+        android:name="pl.polsl.barbell.fragment.HistoryFragment"
         android:label="@string/title_history"
         tools:layout="@layout/fragment_history" />
 
     <fragment
         android:id="@+id/navigation_workout"
-        android:name="pl.polsl.barbell.ui.workout.WorkoutFragment"
+        android:name="pl.polsl.barbell.fragment.WorkoutFragment"
         android:label="@string/title_workout"
         tools:layout="@layout/fragment_workout" />
     <fragment
         android:id="@+id/navigation_exercises"
-        android:name="pl.polsl.barbell.ui.exercises.ExercisesFragment"
+        android:name="pl.polsl.barbell.fragment.ExercisesFragment"
         android:label="@string/title_exercises"
         tools:layout="@layout/fragment_exercises" />
     <fragment
         android:id="@+id/navigation_measure"
-        android:name="pl.polsl.barbell.ui.measure.MeasureFragment"
+        android:name="pl.polsl.barbell.fragment.MeasureFragment"
         android:label="@string/title_measure"
         tools:layout="@layout/fragment_measure" />
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="pl.polsl.barbell.ui.profile.SettingsFragment"
+        android:name="pl.polsl.barbell.fragment.SettingsFragment"
         android:label="SettingsFragment" >
         <action
             android:id="@+id/action_settingsFragment_to_navigation_profile"

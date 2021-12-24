@@ -1,4 +1,4 @@
-package pl.polsl.barbell.login
+package pl.polsl.barbell.viewModel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -58,14 +58,14 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun registerUserWithEmailAndPassword(
-        email: String,
-        password: String,
-        repeatedPassword: String
+            email: String,
+            password: String,
+            repeatedPassword: String
     ) {
         if (comparePassword(
-                password,
-                repeatedPassword
-            ) && passwordLength(password) && email.isNotEmpty()
+                        password,
+                        repeatedPassword
+                ) && passwordLength(password) && email.isNotEmpty()
         ) {
             firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
                 if (it.isSuccessful) {
@@ -83,9 +83,9 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
             }
         } else {
             if (!comparePassword(
-                    password,
-                    repeatedPassword
-                )
+                            password,
+                            repeatedPassword
+                    )
             ) registerListener.onPasswordNotMatched()
             else if (!passwordLength(password)) registerListener.onPasswordTooShort()
             else if (email.isEmpty()) registerListener.onEmailMalformed()

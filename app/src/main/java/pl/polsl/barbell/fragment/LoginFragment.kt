@@ -1,4 +1,4 @@
-package pl.polsl.barbell.login
+package pl.polsl.barbell.fragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,6 +11,7 @@ import androidx.fragment.app.activityViewModels
 import com.google.android.material.snackbar.Snackbar
 import pl.polsl.barbell.MainActivity
 import pl.polsl.barbell.databinding.FragmentLoginBinding
+import pl.polsl.barbell.viewModel.LoginViewModel
 
 class LoginFragment : Fragment(), LoginViewModel.LoginResultListener {
 
@@ -21,8 +22,8 @@ class LoginFragment : Fragment(), LoginViewModel.LoginResultListener {
 
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
@@ -36,8 +37,8 @@ class LoginFragment : Fragment(), LoginViewModel.LoginResultListener {
 
         binding.loginButton.setOnClickListener {
             viewModel.signInWithEmailAndPassword(
-                binding.loginEmail.editText?.text.toString(), //email address
-                binding.loginPassword.editText?.text.toString()
+                    binding.loginEmail.editText?.text.toString(), //email address
+                    binding.loginPassword.editText?.text.toString()
             )
         }
 
@@ -59,7 +60,7 @@ class LoginFragment : Fragment(), LoginViewModel.LoginResultListener {
 
     override fun onUserNotExists() {
         Snackbar.make(binding.root, "You have to create account first.", Snackbar.LENGTH_SHORT)
-            .show()
+                .show()
     }
 
     override fun onWrongPassword() {
@@ -68,7 +69,7 @@ class LoginFragment : Fragment(), LoginViewModel.LoginResultListener {
 
     override fun onEmptyCredentials() {
         Snackbar.make(binding.root, "You have to enter email and password.", Snackbar.LENGTH_SHORT)
-            .show()
+                .show()
     }
 
 }

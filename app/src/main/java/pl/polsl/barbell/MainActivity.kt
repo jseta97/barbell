@@ -2,7 +2,6 @@ package pl.polsl.barbell
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import androidx.activity.viewModels
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -13,8 +12,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import pl.polsl.barbell.login.SignInActivity
-import pl.polsl.barbell.ui.profile.ProfileViewModel
+import pl.polsl.barbell.viewModel.ProfileViewModel
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,14 +28,14 @@ class MainActivity : AppCompatActivity() {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_profile,
-                R.id.navigation_history,
-                R.id.navigation_workout,
-                R.id.navigation_exercises,
-                R.id.navigation_measure,
-                R.id.settingsFragment
-            )
+                setOf(
+                        R.id.navigation_profile,
+                        R.id.navigation_history,
+                        R.id.navigation_workout,
+                        R.id.navigation_exercises,
+                        R.id.navigation_measure,
+                        R.id.settingsFragment
+                )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)

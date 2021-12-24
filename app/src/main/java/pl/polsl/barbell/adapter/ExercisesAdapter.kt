@@ -1,4 +1,4 @@
-package pl.polsl.barbell.ui.exercises
+package pl.polsl.barbell.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +9,7 @@ import pl.polsl.barbell.R
 import pl.polsl.barbell.model.Exercise
 
 class ExercisesAdapter(private val exercisesList: ArrayList<Exercise>) :
-    RecyclerView.Adapter<ExercisesAdapter.ViewHolder>() {
+        RecyclerView.Adapter<ExercisesAdapter.ViewHolder>() {
 
     /**
      * Provide a reference to the type of views that you are using
@@ -28,7 +28,7 @@ class ExercisesAdapter(private val exercisesList: ArrayList<Exercise>) :
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         // Create a new view, which defines the UI of the list item
         val view = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.text_row_item, viewGroup, false)
+                .inflate(R.layout.text_row_item, viewGroup, false)
 
         return ViewHolder(view)
     }

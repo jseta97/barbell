@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".login.SignInActivity"
+            android:name=".SignInActivity"
             android:screenOrientation="portrait" />
     </application>
 
