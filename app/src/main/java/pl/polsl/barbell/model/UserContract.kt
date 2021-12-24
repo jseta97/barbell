@@ -1,7 +1,6 @@
 package pl.polsl.barbell.model
 
 object UsersContract {
-
     internal const val COLLECTION_NAME = "Users"
 
     object Fields {
