@@ -4,28 +4,53 @@ import android.os.Bundle
 import android.view.*
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.type.Date
 import pl.polsl.barbell.R
+import pl.polsl.barbell.adapter.ExercisesAdapter
+import pl.polsl.barbell.adapter.HistoryAdapter
+import pl.polsl.barbell.databinding.FragmentExercisesBinding
+import pl.polsl.barbell.databinding.FragmentHistoryBinding
+import pl.polsl.barbell.model.Exercise
+import pl.polsl.barbell.model.ExercisesWithSets
+import pl.polsl.barbell.model.Set
+import pl.polsl.barbell.model.Workout
+import pl.polsl.barbell.viewModel.ExercisesViewModel
 import pl.polsl.barbell.viewModel.HistoryViewModel
+import java.util.*
+import kotlin.random.Random
 
 class HistoryFragment : Fragment() {
 
-    private lateinit var historyViewModel: HistoryViewModel
+    protected var _binding: FragmentHistoryBinding? = null
+    protected val binding get() = _binding!!
+
+    private val historyViewModel: HistoryViewModel by activityViewModels()
+
+    private val adapter = HistoryAdapter(arrayListOf())
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View? {
-        historyViewModel =
-                ViewModelProvider(this).get(HistoryViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_history, container, false)
-        val textView: TextView = root.findViewById(R.id.text_history)
-        historyViewModel.text.observe(viewLifecycleOwner, {
-            textView.text = it
-        })
-        return root
+    ): View {
+        _binding = FragmentHistoryBinding.inflate(inflater, container, false)
+        setHasOptionsMenu(true)
+        observeViewModel()
+        binding.workoutList.layoutManager =
+                GridLayoutManager(context, 1, RecyclerView.VERTICAL, false)
+        binding.workoutList.adapter = adapter
+
+        binding.swipeRefresh.setOnRefreshListener {
+            historyViewModel.getWorkouts()
+            binding.swipeRefresh.isRefreshing = false
+        }
+
+        return binding.root
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,9 +66,42 @@ class HistoryFragment : Fragment() {
         return when (item.itemId) {
             R.id.action_calendar -> {
                 // navigate to calendar screen
+                historyViewModel.addWorkout(generateRandom())
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    protected fun observeViewModel() {
+        historyViewModel.getWorkouts()
+        historyViewModel.workoutList.observe(viewLifecycleOwner) {
+            adapter.updateWorkoutList(it)
+        }
+    }
+
+    fun generateRandom(): Workout {
+        return Workout.Builder(
+                "uiid",
+                "userUuid",
+                "note",
+                arrayListOf(ExercisesWithSets.Builder(
+                        Exercise.Builder(
+                                Random.nextInt(0, 100).toString(),
+                                "Squat" + Random.nextInt(0, 100).toString(),
+                                "Best exercise",
+                                Random.nextInt(0, 100).toString()
+                        ).build(), arrayListOf(Set.Builder(3).build(), Set.Builder(4).build())
+                ).build(),
+                        ExercisesWithSets.Builder(
+                                Exercise.Builder(
+                                        Random.nextInt(0, 100).toString(),
+                                        "Deadlift" + Random.nextInt(0, 100).toString(),
+                                        "Best exercise also",
+                                        Random.nextInt(0, 100).toString()
+                                ).build(), arrayListOf(Set.Builder(4).build(), Set.Builder(5).build(), Set.Builder(6).build(), Set.Builder(7).build())
+                        ).build()),
+                Calendar.getInstance().time
+        ).build()
     }
 }

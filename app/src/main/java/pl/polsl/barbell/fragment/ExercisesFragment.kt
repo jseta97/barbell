@@ -79,8 +79,8 @@ class ExercisesFragment : Fragment() {
     fun generateRandom(): Exercise {
         return Exercise.Builder(
                 Random.nextInt(0, 100).toString(),
-                Random.nextInt(0, 100).toString(),
-                Random.nextInt(0, 100).toString(),
+                "Bench" + Random.nextInt(0, 100).toString(),
+                "Description" + Random.nextInt(0, 100).toString(),
                 Random.nextInt(0, 100).toString()
         ).build()
     }

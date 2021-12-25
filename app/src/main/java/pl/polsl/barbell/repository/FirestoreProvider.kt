@@ -5,10 +5,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
-import pl.polsl.barbell.model.Exercise
-import pl.polsl.barbell.model.ExerciseContract
-import pl.polsl.barbell.model.User
-import pl.polsl.barbell.model.UsersContract
+import pl.polsl.barbell.model.*
 
 private const val TAG = "FirestoreProvider"
 
@@ -71,6 +68,37 @@ class FirestoreProvider private constructor() {
                 exercises.add(document.toObject())
             }
             callback(exercises)
+        }
+                .addOnFailureListener {
+                    Log.w(TAG, "Listen failed.", it.cause)
+                    callback(null)
+                }
+    }
+
+    fun addWorkout(workout: Workout) {
+        db.collection(WorkoutContract.COLLECTION_NAME).add(workout)
+    }
+
+    fun getWorkout(uuid: String, callback: (Workout?) -> Unit) {
+        db.collection(WorkoutContract.COLLECTION_NAME).document(uuid).get().addOnCompleteListener {
+            var workout: Workout? = null
+            if (it.isSuccessful) {
+                workout = it.result?.toObject<Workout>()
+            } else {
+                Log.w(TAG, "getWorkout() failed", it.exception?.cause)
+            }
+            callback(workout)
+        }
+    }
+
+    fun getWorkouts(callback: (List<Workout>?) -> Unit) {
+        db.collection(WorkoutContract.COLLECTION_NAME).get().addOnSuccessListener { documents ->
+            val workouts: ArrayList<Workout> = ArrayList()
+            for (document in documents) {
+                Log.d(TAG, "${document.id} => ${document.data}")
+                workouts.add(document.toObject())
+            }
+            callback(workouts)
         }
                 .addOnFailureListener {
                     Log.w(TAG, "Listen failed.", it.cause)

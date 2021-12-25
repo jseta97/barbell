@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="Exercise"
-            type="pl.polsl.barbell.model.Exercise" />
+            name="ExercisesWithSets"
+            type="pl.polsl.barbell.model.ExercisesWithSets" />
 
         <variable
             name="listener"
@@ -24,7 +24,7 @@
         android:layout_marginBottom="0dp"
         android:clickable="true"
         android:elevation="@dimen/cardview_default_elevation"
-        android:onClick="@{(view) -> listener.onClicked(view, Exercise.uuid)}"
+        android:onClick="@{(view) -> listener.onClicked(view, ExercisesWithSets.exercise.uuid)}"
         app:cardCornerRadius="4dp">
 
         <LinearLayout
@@ -50,15 +50,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="2dp"
-                    android:text="@{Exercise.name}" />
+                    android:text="@{ExercisesWithSets.exercise.name}" />
 
 
                 <TextView
-                    android:id="@+id/descriptionTextView"
+                    android:id="@+id/setsTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="2dp"
-                    android:text="@{Exercise.description}" />
+                    android:text="@{String.valueOf(ExercisesWithSets.sets.size())}" />
             </LinearLayout>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>

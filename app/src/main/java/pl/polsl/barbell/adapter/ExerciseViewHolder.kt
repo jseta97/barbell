@@ -1,4 +1,4 @@
-package pl.polsl.barbell
+package pl.polsl.barbell.adapter
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

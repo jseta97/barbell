@@ -26,4 +26,5 @@
     <string name="repeat_password">Repeat password</string>
     <string name="privacy_policy">I accept privacy policy.</string>
     <string name="description">Description</string>
+    <string name="exercise">Exercise</string>
 </resources>

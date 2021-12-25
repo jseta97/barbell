@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="Workout"
+            type="pl.polsl.barbell.model.Workout" />
+
+        <variable
+            name="listener"
+            type="pl.polsl.barbell.adapter.ItemClickListener" />
+    </data>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginBottom="0dp"
+        android:clickable="true"
+        android:elevation="@dimen/cardview_default_elevation"
+        android:onClick="@{(view) -> listener.onClicked(view, Workout.uuid)}"
+        app:cardCornerRadius="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/noteTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:text="@{Workout.note}" />
+
+            <TextView
+                android:id="@+id/dateTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:text="@{Workout.date.toString()}" />
+
+            <TextView
+                android:id="@+id/exerciseTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:text="@string/exercise" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/exercisesListView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dp" />
+
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

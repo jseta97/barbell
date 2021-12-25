@@ -4,13 +4,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import pl.polsl.barbell.ExerciseClickListener
-import pl.polsl.barbell.ExerciseViewHolder
 import pl.polsl.barbell.R
 import pl.polsl.barbell.model.Exercise
 
 class ExercisesAdapter(private val exercisesList: ArrayList<Exercise>) :
-        RecyclerView.Adapter<ExerciseViewHolder>(), ExerciseClickListener {
+        RecyclerView.Adapter<ExerciseViewHolder>(), ItemClickListener {
 
     fun updateExercisesList(newExercisesList: List<Exercise>) {
         exercisesList.clear()
@@ -30,7 +28,7 @@ class ExercisesAdapter(private val exercisesList: ArrayList<Exercise>) :
 
     override fun getItemCount(): Int = exercisesList.size
 
-    override fun onExClicked(v: View, fixUuid: String) {
+    override fun onClicked(v: View, fixUuid: String) {
         //TODO: Not yet implemented
     }
 }
