@@ -5,26 +5,27 @@
     <data>
 
         <variable
-            name="User"
+            name="Exercise"
             type="pl.polsl.barbell.model.Exercise" />
     </data>
-<androidx.appcompat.widget.LinearLayoutCompat
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_gravity="top"
-    android:orientation="vertical"
-    tools:context=".fragment.ExercisesFragment">
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipe_refresh"
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_gravity="top"
+        android:orientation="vertical"
+        tools:context=".fragment.ExercisesFragment">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/exercises_list"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipToPadding="false" />
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-</androidx.appcompat.widget.LinearLayoutCompat>
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/exercises_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>
