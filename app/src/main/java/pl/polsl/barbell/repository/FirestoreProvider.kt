@@ -1,6 +1,7 @@
 package pl.polsl.barbell.repository
 
 import android.util.Log
+import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
@@ -27,6 +28,19 @@ class FirestoreProvider private constructor() {
                 Log.w(TAG, "getUser() failed.", it.exception?.cause)
             }
             callback(user)
+        }
+    }
+
+    fun updateUser(user: User) {
+        db.collection(UsersContract.COLLECTION_NAME).document(user.uuid!!).get().addOnCompleteListener {
+            if (it.isSuccessful) {
+                db.collection(UsersContract.COLLECTION_NAME)
+                        .document(user.uuid)
+                        .set(user, SetOptions.merge())
+            } else {
+                addUser(user)
+                Log.d(TAG, "Object not found", it.exception)
+            }
         }
     }
 

@@ -27,4 +27,5 @@
     <string name="privacy_policy">I accept privacy policy.</string>
     <string name="description">Description</string>
     <string name="exercise">Exercise</string>
+    <string name="log_out">LOG OUT</string>
 </resources>
