@@ -3,6 +3,10 @@ package pl.polsl.barbell.viewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import pl.polsl.barbell.model.Exercise
+import pl.polsl.barbell.model.ExercisesWithSets
+import pl.polsl.barbell.model.Workout
+import pl.polsl.barbell.repository.FirestoreProvider
 
 class WorkoutViewModel : ViewModel() {
 
@@ -10,4 +14,33 @@ class WorkoutViewModel : ViewModel() {
         value = "This is workout Fragment"
     }
     val text: LiveData<String> = _text
+
+    private val _exercises_list = MutableLiveData<ArrayList<ExercisesWithSets>>()
+    val exercisesList: LiveData<ArrayList<ExercisesWithSets>>
+        get() = _exercises_list
+
+    private val _workout = MutableLiveData<Workout>()
+    val workout: LiveData<Workout>
+        get() = _workout
+
+    fun addWorkout(workout: Workout) {
+        FirestoreProvider.instance.addWorkout(workout)
+    }
+
+    fun addExercise(exercisesWithSets: ExercisesWithSets) {
+        val exercises: ArrayList<ExercisesWithSets> = arrayListOf()
+        if (getExercises() != null) {
+            exercises.addAll(getExercises()!!)
+        }
+        exercises.add(exercisesWithSets)
+        _exercises_list.postValue(exercises)
+    }
+
+    fun initEmptyExercisesList() {
+        _exercises_list.postValue(arrayListOf())
+    }
+
+    fun getExercises(): ArrayList<ExercisesWithSets>? {
+        return exercisesList.value
+    }
 }
