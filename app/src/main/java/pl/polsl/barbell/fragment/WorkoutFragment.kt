@@ -2,6 +2,7 @@ package pl.polsl.barbell.fragment
 
 import android.os.Bundle
 import android.view.*
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
@@ -50,6 +51,19 @@ class WorkoutFragment : Fragment() {
         binding.saveWorkoutButton.setOnClickListener {
             workoutViewModel.addWorkout(createWorkout())
         }
+        context?.let {
+            ArrayAdapter.createFromResource(
+                    it,
+                R.array.planets_array,
+                android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            // Apply the adapter to the spinner
+            binding.exercisesListSpinner.adapter = adapter
+        }
+        }
+
         return binding.root
     }
 
