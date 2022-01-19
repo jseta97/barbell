@@ -26,12 +26,17 @@
     <string name="repeat_password">Repeat password</string>
     <string name="privacy_policy">I accept privacy policy.</string>
     <string name="description">Description</string>
-    <string name="exercise">Exercise</string>
+    <string name="exercise">Exercises</string>
     <string name="log_out">LOG OUT</string>
     <string name="start_workout">START AN EMPTY WORKOUT</string>
     <string name="add_set">ADD SET</string>
     <string name="add_exercise">ADD EXERCISE</string>
     <string name="save_workout">SAVE WORKOUT</string>
+    <string name="sets">Sets:</string>
+    <string name="volume">Volume:</string>
+    <string name="max_load">Max load:</string>
+    <string name="date">Date:</string>
+    <string name="total_volume">Total volume:</string>
     <string-array name="planets_array">
         <item>Mercury</item>
         <item>Venus</item>

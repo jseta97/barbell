@@ -17,4 +17,27 @@ class ExercisesWithSets(
                 sets
         )
     }
+    fun getVolume(): Int {
+        var volume: Int = 0;
+        for(set: Set in sets!!){
+            if(set.load==null){
+                set.load=0
+            }
+            if(set.reps==null){
+                set.reps=0
+            }
+            volume+=set.load!! * set.reps!!
+        }
+        return volume;
+    }
+
+    fun getMaxLoad(): Int {
+        var max: Int = 0;
+        for(set: Set in sets!!){
+            if(set.load!! > max){
+               max = set.load!!
+            }
+        }
+        return max;
+    }
 }

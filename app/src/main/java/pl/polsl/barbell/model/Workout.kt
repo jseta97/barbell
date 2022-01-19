@@ -2,6 +2,7 @@ package pl.polsl.barbell.model
 
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.collections.Set
 
 class Workout(
         val uuid: String? = null,
@@ -26,5 +27,21 @@ class Workout(
                 exercises,
                 date
         )
+    }
+
+    fun getTotalVolume(): Int {
+        var volume: Int = 0;
+        for (exercise: ExercisesWithSets in exercises!!) {
+            for (set: pl.polsl.barbell.model.Set in exercise.sets!!) {
+                if (set.load == null) {
+                    set.load = 0
+                }
+                if (set.reps == null) {
+                    set.reps = 0
+                }
+                volume += set.load!! * set.reps!!
+            }
+        }
+        return volume;
     }
 }

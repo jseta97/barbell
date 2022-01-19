@@ -33,26 +33,26 @@
 
             <TextView
                 android:id="@+id/setTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:padding="2dp"
                 android:text="1" />
 
             <EditText
                 android:id="@+id/loadTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="match_parent"
-                android:padding="2dp"
+                android:autofillHints=""
                 android:inputType="number"
-                android:text="@{Set.load.toString()}"
-                android:autofillHints="" />
+                android:padding="2dp"
+                android:text="@{Set.load.toString()}" />
 
             <EditText
                 android:id="@+id/repsTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="match_parent"
-                android:padding="2dp"
                 android:inputType="number"
+                android:padding="2dp"
                 android:text="@{Set.reps.toString()}" />
 
         </LinearLayout>

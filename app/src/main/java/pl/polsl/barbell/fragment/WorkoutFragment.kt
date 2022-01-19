@@ -1,8 +1,10 @@
 package pl.polsl.barbell.fragment
 
+import android.os.Build
 import android.os.Bundle
 import android.view.*
 import android.widget.ArrayAdapter
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
@@ -18,6 +20,9 @@ import pl.polsl.barbell.model.ExercisesWithSets
 import pl.polsl.barbell.model.Set
 import pl.polsl.barbell.model.Workout
 import pl.polsl.barbell.viewModel.WorkoutViewModel
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
 import kotlin.random.Random
 
 class WorkoutFragment : Fragment() {
@@ -32,9 +37,9 @@ class WorkoutFragment : Fragment() {
     private val adapter = WorkoutAdapter(arrayListOf())
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View {
         _binding = FragmentWorkoutBinding.inflate(inflater, container, false)
         setHasOptionsMenu(true)
@@ -54,9 +59,9 @@ class WorkoutFragment : Fragment() {
         context?.let {
             ArrayAdapter.createFromResource(
                     it,
-                R.array.planets_array,
-                android.R.layout.simple_spinner_item
-        ).also { adapter ->
+                    R.array.planets_array,
+                    android.R.layout.simple_spinner_item
+            ).also { adapter ->
             // Specify the layout to use when the list of choices appears
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             // Apply the adapter to the spinner
@@ -84,21 +89,28 @@ class WorkoutFragment : Fragment() {
 
     fun generateRandom(): ExercisesWithSets {
         return ExercisesWithSets.Builder(
-            Exercise.Builder(
-                Random.nextInt(0, 100).toString(),
-                "Squat" + Random.nextInt(0, 100).toString(),
-                "Best exercise",
-                Random.nextInt(0, 100).toString()
-            ).build(), arrayListOf(Set.Builder(3, 50).build(), Set.Builder(4, 30).build())
+                Exercise.Builder(
+                        Random.nextInt(0, 100).toString(),
+                        "Squat" + Random.nextInt(0, 100).toString(),
+                        "Best exercise",
+                        Random.nextInt(0, 100).toString()
+                ).build(), arrayListOf(Set.Builder(3, 50).build(), Set.Builder(4, 30).build())
         ).build()
     }
 
     fun createWorkout(): Workout {
         return Workout.Builder(
-            firebaseAuth.currentUser!!.uid,
-            "userUuid",
-            binding.noteTextView.text.toString(),
-            workoutViewModel.exercisesList.value!!
+                firebaseAuth.currentUser!!.uid,
+                "userUuid",
+                binding.noteTextView.text.toString(),
+                workoutViewModel.exercisesList.value!!,
+                getDateWithoutTimeUsingFormat()
         ).build()
+    }
+
+    @Throws(ParseException::class)
+    fun getDateWithoutTimeUsingFormat(): Date? {
+        val formatter = SimpleDateFormat("dd/MM/yyyy")
+        return formatter.parse(formatter.format(Date()))
     }
 }

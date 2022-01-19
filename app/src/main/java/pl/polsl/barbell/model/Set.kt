@@ -1,8 +1,8 @@
 package pl.polsl.barbell.model
 
 class Set(
-    val reps: Int? = null,
-    val load: Int? = null
+        var reps: Int? = null,
+        var load: Int? = null
 ) {
     data class Builder(
         private var reps: Int? = null,

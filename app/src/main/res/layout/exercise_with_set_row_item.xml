@@ -17,7 +17,7 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="0dp"
         android:layout_marginTop="0dp"
         android:layout_marginRight="0dp"
@@ -33,10 +33,10 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="90"
-                app:srcCompat="@drawable/ic_baseline_handyman_24" />
+                app:srcCompat="@drawable/common_full_open_on_phone" />
 
 
             <LinearLayout
@@ -49,15 +49,62 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="2dp"
-                    android:text="@{ExercisesWithSets.exercise.name}" />
+                    android:text="@{ExercisesWithSets.exercise.name}"
+                    android:textSize="16sp" />
 
-
-                <TextView
-                    android:id="@+id/setsTextView"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="2dp"
-                    android:text="@{String.valueOf(ExercisesWithSets.sets.size())}" />
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/setsLabelTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="2dp"
+                        android:text="@string/sets"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/setsTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="2dp"
+                        android:text="@{String.valueOf(ExercisesWithSets.sets.size())}"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/volumeLabelTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="2dp"
+                        android:text="@string/volume"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/volumeTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="2dp"
+                        android:text="@{String.valueOf(ExercisesWithSets.getVolume())}"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/maxLabelTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="2dp"
+                        android:text="@string/max_load"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/maxLoadTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="2dp"
+                        android:text="@{String.valueOf(ExercisesWithSets.getMaxLoad())}"
+                        android:textSize="16sp" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
