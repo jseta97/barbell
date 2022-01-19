@@ -18,13 +18,15 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="4dp"
         android:clickable="true"
         android:elevation="@dimen/cardview_default_elevation"
-        app:cardCornerRadius="4dp">
+        app:cardCornerRadius="4dp"
+        app:strokeColor="@color/design_default_color_primary"
+        app:strokeWidth="2dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -36,8 +38,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="2dp"
-                android:textSize="30sp"
-                android:text="@{ExercisesWithSets.exercise.name}" />
+                android:text="@{ExercisesWithSets.exercise.name}"
+                android:textSize="30sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -57,9 +59,9 @@
                 android:id="@+id/add_set_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_margin="@dimen/margin_medium"
-                android:text="@string/add_set"
-                android:layout_gravity="center_horizontal"/>
+                android:text="@string/add_set" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 </layout>

@@ -37,6 +37,7 @@
     <string name="max_load">Max load:</string>
     <string name="date">Date:</string>
     <string name="total_volume">Total volume:</string>
+    <string name="note">Note:</string>
     <string-array name="planets_array">
         <item>Mercury</item>
         <item>Venus</item>

@@ -36,26 +36,26 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/start_workout_button">
 
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/note"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <EditText
                 android:id="@+id/noteTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:padding="2dp"
                 android:text="@{Workout.note}"
+                android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/dateTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="2dp"
-                android:text="@{Workout.date.toString()}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/noteTextView" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/exercises_list"
@@ -63,7 +63,7 @@
                 android:layout_height="0dp"
                 android:clipToPadding="false"
                 app:layout_constraintBottom_toTopOf="@+id/add_exercise_button"
-                app:layout_constraintTop_toBottomOf="@+id/dateTextView" />
+                app:layout_constraintTop_toBottomOf="@+id/noteTextView" />
 
             <Spinner
                 android:id="@+id/exercises_list_spinner"
