@@ -23,6 +23,16 @@ class WorkoutViewModel : ViewModel() {
     val workout: LiveData<Workout>
         get() = _workout
 
+    private val _exercises_list_for_spinner = MutableLiveData<List<Exercise>>()
+    val exercisesListForSpinner: LiveData<List<Exercise>>
+        get() = _exercises_list_for_spinner
+
+    fun getExercisesForSpinner() {
+        FirestoreProvider.instance.getExercises() {
+            _exercises_list_for_spinner.postValue(it)
+        }
+    }
+
     fun addWorkout(workout: Workout) {
         FirestoreProvider.instance.addWorkout(workout)
     }
