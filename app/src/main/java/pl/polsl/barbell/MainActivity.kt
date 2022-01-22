@@ -34,7 +34,8 @@ class MainActivity : AppCompatActivity() {
                         R.id.navigation_workout,
                         R.id.navigation_exercises,
                         R.id.navigation_measure,
-                        R.id.settingsFragment
+                        R.id.settingsFragment,
+                        R.id.exerciseDetailsFragment
                 )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
