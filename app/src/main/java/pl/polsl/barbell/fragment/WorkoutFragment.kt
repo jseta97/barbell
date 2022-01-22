@@ -88,7 +88,7 @@ class WorkoutFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     private fun createExercise(): ExercisesWithSets {
         return ExercisesWithSets.Builder(
-                selectedExercise, arrayListOf(Set.Builder(0, 0).build())
+                selectedExercise, arrayListOf(Set.Builder(null, null, 1).build())
         ).build()
     }
 

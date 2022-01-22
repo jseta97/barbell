@@ -31,7 +31,7 @@ class WorkoutAdapter(private val exercisesList: ArrayList<ExercisesWithSets>) :
     override fun onBindViewHolder(holder: WorkoutViewHolder, position: Int) {
         holder.binding.exercisesWithSets = exercisesList[position]
         holder.binding.addSetButton.setOnClickListener {
-            addSet(generateRandom(), position)
+            addSet(createSet(exercisesList[position]), position)
             val adapter = SetAdapter(exercisesList[position].sets!!)
             val layoutManager = GridLayoutManager(
                 holder.binding.setsListView.context,
@@ -61,8 +61,8 @@ class WorkoutAdapter(private val exercisesList: ArrayList<ExercisesWithSets>) :
         //TODO: Not yet implemented
     }
 
-    fun generateRandom(): Set {
-        return Set.Builder(Random.nextInt(0, 100), Random.nextInt(0, 100)).build()
+    private fun createSet(exercise: ExercisesWithSets): Set {
+        return Set.Builder(null, null, exercise.sets?.size?.plus(1)).build()
     }
 
 
