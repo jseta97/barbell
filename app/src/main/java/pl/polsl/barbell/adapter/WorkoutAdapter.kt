@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import pl.polsl.barbell.R
 import pl.polsl.barbell.model.ExercisesWithSets
 import pl.polsl.barbell.model.Set
-import kotlin.random.Random
 
 class WorkoutAdapter(private val exercisesList: ArrayList<ExercisesWithSets>) :
     RecyclerView.Adapter<WorkoutViewHolder>(), ItemClickListener {
