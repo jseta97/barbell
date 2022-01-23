@@ -62,7 +62,7 @@ class FirestoreProvider private constructor() {
         db.collection(ExerciseContract.COLLECTION_NAME).add(exercise)
     }
 
-    fun getExercise(uuid: String, callback: (Exercise?) -> Unit) {
+    /*fun getExercise(uuid: String, callback: (Exercise?) -> Unit) {
         db.collection(ExerciseContract.COLLECTION_NAME).document(uuid).get().addOnCompleteListener {
             var exercise: Exercise? = null
             if (it.isSuccessful) {
@@ -72,6 +72,24 @@ class FirestoreProvider private constructor() {
             }
             callback(exercise)
         }
+    }*/
+
+    fun getExercise(uuid: String, callback: (List<Exercise>?) -> Unit) {
+        db.collection(ExerciseContract.COLLECTION_NAME)
+                .whereEqualTo(ExerciseContract.Fields.UUID, uuid)
+                .get()
+                .addOnSuccessListener { documents ->
+                    val exercises : ArrayList<Exercise> = ArrayList()
+                    for (document in documents) {
+                        Log.d(TAG, "${document.id} => ${document.data}")
+                        exercises.add(document.toObject())
+                    }
+                    callback(exercises)
+                }
+                .addOnFailureListener {
+                    Log.w(TAG, "Listen failed.", it.cause)
+                    callback(null)
+                }
     }
 
     fun getExercises(callback: (List<Exercise>?) -> Unit) {
@@ -114,6 +132,24 @@ class FirestoreProvider private constructor() {
             }
             callback(workouts)
         }
+                .addOnFailureListener {
+                    Log.w(TAG, "Listen failed.", it.cause)
+                    callback(null)
+                }
+    }
+
+    fun getUserWorkouts(userUuid: String, callback: (List<Workout>?) -> Unit) {
+        db.collection(WorkoutContract.COLLECTION_NAME)
+                .whereEqualTo(WorkoutContract.Fields.USERUUID, userUuid)
+                .get()
+                .addOnSuccessListener { documents ->
+                    val workouts : ArrayList<Workout> = ArrayList()
+                    for (document in documents) {
+                        Log.d(TAG, "${document.id} => ${document.data}")
+                        workouts.add(document.toObject())
+                    }
+                    callback(workouts)
+                }
                 .addOnFailureListener {
                     Log.w(TAG, "Listen failed.", it.cause)
                     callback(null)

@@ -1,11 +1,8 @@
 package pl.polsl.barbell.fragment
 
-import android.os.Build
 import android.os.Bundle
 import android.view.*
 import android.widget.*
-import androidx.annotation.RequiresApi
-import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
@@ -21,13 +18,10 @@ import pl.polsl.barbell.model.Exercise
 import pl.polsl.barbell.model.ExercisesWithSets
 import pl.polsl.barbell.model.Set
 import pl.polsl.barbell.model.Workout
-import pl.polsl.barbell.viewModel.ExercisesViewModel
 import pl.polsl.barbell.viewModel.WorkoutViewModel
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
-import kotlin.random.Random
 
 class WorkoutFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
@@ -95,7 +89,6 @@ class WorkoutFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private fun createWorkout(): Workout {
         return Workout.Builder(
                 firebaseAuth.currentUser!!.uid,
-                "userUuid",
                 binding.noteTextView.text.toString(),
                 workoutViewModel.exercisesList.value!!,
                 getDateWithoutTimeUsingFormat()

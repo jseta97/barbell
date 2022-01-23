@@ -2,24 +2,20 @@ package pl.polsl.barbell.fragment
 
 import android.os.Bundle
 import android.view.*
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.type.Date
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import pl.polsl.barbell.R
-import pl.polsl.barbell.adapter.ExercisesAdapter
 import pl.polsl.barbell.adapter.HistoryAdapter
-import pl.polsl.barbell.databinding.FragmentExercisesBinding
 import pl.polsl.barbell.databinding.FragmentHistoryBinding
 import pl.polsl.barbell.model.Exercise
 import pl.polsl.barbell.model.ExercisesWithSets
 import pl.polsl.barbell.model.Set
 import pl.polsl.barbell.model.Workout
-import pl.polsl.barbell.viewModel.ExercisesViewModel
 import pl.polsl.barbell.viewModel.HistoryViewModel
 import java.util.*
 import kotlin.random.Random
@@ -32,6 +28,8 @@ class HistoryFragment : Fragment() {
     private val historyViewModel: HistoryViewModel by activityViewModels()
 
     private val adapter = HistoryAdapter(arrayListOf())
+
+    private val firebaseAuth: FirebaseAuth by lazy { Firebase.auth }
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -46,7 +44,7 @@ class HistoryFragment : Fragment() {
         binding.workoutList.adapter = adapter
 
         binding.swipeRefresh.setOnRefreshListener {
-            historyViewModel.getWorkouts()
+            historyViewModel.getWorkouts(firebaseAuth.currentUser!!.uid)
             binding.swipeRefresh.isRefreshing = false
         }
 
@@ -74,7 +72,7 @@ class HistoryFragment : Fragment() {
     }
 
     protected fun observeViewModel() {
-        historyViewModel.getWorkouts()
+        historyViewModel.getWorkouts(firebaseAuth.currentUser!!.uid)
         historyViewModel.workoutList.observe(viewLifecycleOwner) {
             adapter.updateWorkoutList(it)
         }
@@ -82,7 +80,6 @@ class HistoryFragment : Fragment() {
 
     fun generateRandom(): Workout {
         return Workout.Builder(
-                "uiid",
                 "userUuid",
                 "note",
                 arrayListOf(ExercisesWithSets.Builder(

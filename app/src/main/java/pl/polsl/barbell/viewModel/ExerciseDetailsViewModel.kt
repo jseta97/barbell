@@ -14,7 +14,7 @@ class ExerciseDetailsViewModel : ViewModel(){
 
     fun getExercise(uuid: String) {
         FirestoreProvider.instance.getExercise(uuid) {
-            _exercise.postValue(it)
+            _exercise.postValue(it?.first())
         }
     }
 }

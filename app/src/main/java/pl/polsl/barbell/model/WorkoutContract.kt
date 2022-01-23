@@ -5,7 +5,7 @@ object WorkoutContract {
 
     object Fields {
         const val UUID = "uuid"
-        const val USERUUID = "useruuid"
+        const val USERUUID = "userUuid"
         const val NOTE = "note"
         const val EXERCISES = "exercises"
         const val DATE = "date"

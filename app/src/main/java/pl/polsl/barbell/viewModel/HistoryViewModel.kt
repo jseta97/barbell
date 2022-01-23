@@ -23,6 +23,12 @@ class HistoryViewModel : ViewModel() {
         }
     }
 
+    fun getWorkouts(userUuid: String) {
+        FirestoreProvider.instance.getUserWorkouts(userUuid) {
+            _workout_list.postValue(it)
+        }
+    }
+
     fun addWorkout(workout: Workout) {
         FirestoreProvider.instance.addWorkout(workout)
     }
