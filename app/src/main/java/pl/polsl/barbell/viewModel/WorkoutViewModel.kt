@@ -46,6 +46,13 @@ class WorkoutViewModel : ViewModel() {
         _exercises_list.postValue(exercises)
     }
 
+    fun removeExercise(position: Int){
+        if (getExercises() != null) {
+            getExercises()?.removeAt(position)
+        }
+        _exercises_list.postValue(getExercises())
+    }
+
     fun initEmptyExercisesList() {
         _exercises_list.postValue(arrayListOf())
     }

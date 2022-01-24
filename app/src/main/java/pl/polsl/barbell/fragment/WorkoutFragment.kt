@@ -32,7 +32,7 @@ class WorkoutFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     private val firebaseAuth: FirebaseAuth by lazy { Firebase.auth }
 
-    private val adapter = WorkoutAdapter(arrayListOf())
+    private val adapter = WorkoutAdapter(arrayListOf(), DeleteExercise())
 
     private var selectedExercise: Exercise? = null
 
@@ -107,5 +107,11 @@ class WorkoutFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     override fun onNothingSelected(parent: AdapterView<*>) {
         selectedExercise = parent.getItemAtPosition(1) as Exercise
+    }
+
+    inner class DeleteExercise(){
+        fun delete(position: Int){
+            workoutViewModel.removeExercise(position)
+        }
     }
 }
