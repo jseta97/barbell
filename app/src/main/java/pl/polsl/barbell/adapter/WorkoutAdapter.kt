@@ -29,30 +29,26 @@ class WorkoutAdapter(private val exercisesList: ArrayList<ExercisesWithSets>) :
 
     override fun onBindViewHolder(holder: WorkoutViewHolder, position: Int) {
         holder.binding.exercisesWithSets = exercisesList[position]
+        holder.binding.deleteButton.setOnClickListener {
+            delete(holder.adapterPosition)
+        }
         holder.binding.addSetButton.setOnClickListener {
             addSet(createSet(exercisesList[position]), position)
-            val adapter = SetAdapter(exercisesList[position].sets!!)
-            val layoutManager = GridLayoutManager(
-                holder.binding.setsListView.context,
-                1,
-                RecyclerView.VERTICAL,
-                false
-            )
-            layoutManager.initialPrefetchItemCount = exercisesList[position].sets!!.size
-            holder.binding.setsListView.layoutManager = layoutManager
-            holder.binding.setsListView.adapter = adapter
-            holder.binding.setsListView.setRecycledViewPool(viewPool)
-            holder.binding.listener = this
+            initNewAdapter(holder, position)
         }
+        initNewAdapter(holder, position)
+    }
+
+    private fun initNewAdapter(holder: WorkoutViewHolder, position: Int){
         val adapter = SetAdapter(exercisesList[position].sets!!)
-        val layoutManager =
-            GridLayoutManager(holder.binding.setsListView.context, 1, RecyclerView.VERTICAL, false)
+        val layoutManager = GridLayoutManager(holder.binding.setsListView.context, 1, RecyclerView.VERTICAL, false)
         layoutManager.initialPrefetchItemCount = exercisesList[position].sets!!.size
         holder.binding.setsListView.layoutManager = layoutManager
         holder.binding.setsListView.adapter = adapter
         holder.binding.setsListView.setRecycledViewPool(viewPool)
         holder.binding.listener = this
     }
+
 
     override fun getItemCount(): Int = exercisesList.size
 
@@ -75,5 +71,10 @@ class WorkoutAdapter(private val exercisesList: ArrayList<ExercisesWithSets>) :
             exercisesList[position].sets?.clear()
             exercisesList[position].sets?.addAll(it)
         }
+    }
+
+    fun delete(position: Int){
+        exercisesList.removeAt(position)
+        notifyItemRemoved(position)
     }
 }

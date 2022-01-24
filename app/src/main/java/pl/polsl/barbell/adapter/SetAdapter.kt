@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -31,16 +32,26 @@ class SetAdapter(private val setsList: ArrayList<Set>) : RecyclerView.Adapter<Se
         if(setsList[holder.adapterPosition].load.toString() != "null") {
             holder.loadTextView.setText(setsList[holder.adapterPosition].load.toString())
         }
+        holder.deleteButton.setOnClickListener {
+            delete(holder.adapterPosition)
+        }
     }
 
     override fun getItemCount(): Int {
         return setsList.size
     }
 
+    fun delete(position: Int){
+        setsList.removeAt(position)
+        setsList.forEachIndexed { index, set ->  set.setCounter=index.plus(1)}
+        notifyDataSetChanged()
+    }
+
     class ViewHolder(v: View, repsEditTextListener: RepsEditTextListener, loadEditTextListener: LoadEditTextListener) : RecyclerView.ViewHolder(v) {
         var repsTextView: EditText
         var loadTextView: EditText
         var setTextView : TextView
+        var deleteButton : Button
         var repsEditTextListener: RepsEditTextListener
         var loadEditTextListener: LoadEditTextListener
 
@@ -48,6 +59,7 @@ class SetAdapter(private val setsList: ArrayList<Set>) : RecyclerView.Adapter<Se
             repsTextView = v.findViewById(R.id.repsTextView)
             loadTextView = v.findViewById(R.id.loadTextView)
             setTextView = v.findViewById(R.id.setTextView)
+            deleteButton = v.findViewById(R.id.delete_button)
             this.repsEditTextListener = repsEditTextListener
             this.loadEditTextListener = loadEditTextListener
             repsTextView.addTextChangedListener(repsEditTextListener)

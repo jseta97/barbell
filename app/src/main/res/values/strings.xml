@@ -38,6 +38,8 @@
     <string name="date">Date:</string>
     <string name="total_volume">Total volume:</string>
     <string name="note">Note:</string>
+    <string name="x">X</string>
+    <string name="remove">REMOVE</string>
     <string-array name="planets_array">
         <item>Mercury</item>
         <item>Venus</item>
