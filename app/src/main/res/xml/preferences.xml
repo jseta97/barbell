@@ -6,13 +6,5 @@
         android:title="@string/name"
         android:key="@string/name_key"
         android:defaultValue="@string/name" />
-    <EditTextPreference
-        android:title="@string/username"
-        android:key="@string/username_key"
-        android:defaultValue="@string/username"/>
-    <EditTextPreference
-        android:title="@string/email"
-        android:key="@string/email_key"
-        android:defaultValue="@string/email"/>
 </PreferenceCategory>
 </PreferenceScreen>

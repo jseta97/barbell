@@ -5,6 +5,7 @@ import android.view.*
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
@@ -55,7 +56,12 @@ class WorkoutFragment : Fragment(), AdapterView.OnItemSelectedListener {
             workoutViewModel.addExercise(createExercise())
         }
         binding.saveWorkoutButton.setOnClickListener {
-            workoutViewModel.addWorkout(createWorkout())
+            if(workoutViewModel.exercisesList.value!=null) {
+                workoutViewModel.addWorkout(createWorkout())
+                findNavController().navigate(R.id.navigation_history)
+            }else {
+                Toast.makeText(context, "Add some exercises", Toast.LENGTH_SHORT).show()
+            }
         }
         return binding.root
     }

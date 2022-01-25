@@ -1,11 +1,13 @@
 package pl.polsl.barbell.fragment
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.preference.PreferenceManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -24,6 +26,8 @@ class ProfileFragment : Fragment() {
 
     private val firebaseAuth: FirebaseAuth by lazy { Firebase.auth }
 
+    private lateinit var sharedPreferences: SharedPreferences
+
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
@@ -32,11 +36,12 @@ class ProfileFragment : Fragment() {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         setHasOptionsMenu(true)
         observeViewModel()
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.requireContext())
         profileViewModel.setUserDetails(firebaseAuth.currentUser?.uid.toString())
         profileViewModel.saveUser(
                 User.Builder(
                         firebaseAuth.currentUser?.uid.toString(),
-                        "name1",
+                        sharedPreferences.getString("name_key","")!!,
                         firebaseAuth.currentUser?.email,
                         "url1").build())
         binding.logOutButton.setOnClickListener {
