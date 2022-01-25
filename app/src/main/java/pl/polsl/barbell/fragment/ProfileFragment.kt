@@ -70,5 +70,14 @@ class ProfileFragment : Fragment() {
         profileViewModel.authenticatedUser.observeForever {
             it?.let { binding.user = it }
         }
+        profileViewModel.getWorkoutCount(firebaseAuth.currentUser?.uid.toString())
+        profileViewModel.workoutCount.observe(viewLifecycleOwner){
+            it?.let { binding.workoutCount.text= it.toString() }
+        }
+        profileViewModel.getPoints(firebaseAuth.currentUser?.uid.toString())
+        profileViewModel.points.observe(viewLifecycleOwner){
+            it?.let { binding.points.text= it.toString() }
+        }
+
     }
 }

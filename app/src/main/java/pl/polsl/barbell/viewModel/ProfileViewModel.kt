@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import pl.polsl.barbell.model.User
+import pl.polsl.barbell.model.Workout
 import pl.polsl.barbell.repository.FirestoreProvider
 
 class ProfileViewModel : ViewModel() {
@@ -13,6 +14,14 @@ class ProfileViewModel : ViewModel() {
     private val _authenticatedUser = MutableLiveData<User>()
     val authenticatedUser: LiveData<User>
         get() = _authenticatedUser
+
+    private val _workoutCount = MutableLiveData<Int>()
+    val workoutCount: LiveData<Int>
+        get() = _workoutCount
+
+    private val _points = MutableLiveData<Int>()
+    val points: LiveData<Int>
+        get() = _points
 
     fun setUser(uuid: String, callback: () -> Any?) {
         FirestoreProvider.instance.listenForUser(uuid) {
@@ -48,5 +57,21 @@ class ProfileViewModel : ViewModel() {
 
     fun signOut() {
         Firebase.auth.signOut()
+    }
+
+    fun getWorkoutCount(userUuid: String) {
+        FirestoreProvider.instance.getUserWorkouts(userUuid) {
+            _workoutCount.postValue(it?.size)
+        }
+    }
+
+    fun getPoints(userUuid: String){
+        FirestoreProvider.instance.getUserWorkouts(userUuid) {
+            var p = 0
+            for (worout : Workout in it!!){
+                p = p.plus(worout.getTotalVolume())
+            }
+            _points.postValue(p)
+        }
     }
 }

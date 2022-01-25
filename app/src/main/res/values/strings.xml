@@ -40,6 +40,8 @@
     <string name="note">Note:</string>
     <string name="x">X</string>
     <string name="remove">REMOVE</string>
+    <string name="workouts">Workouts:</string>
+    <string name="points">Points:</string>
     <string-array name="planets_array">
         <item>Mercury</item>
         <item>Venus</item>
