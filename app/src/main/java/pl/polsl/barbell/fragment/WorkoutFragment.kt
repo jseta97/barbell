@@ -103,7 +103,7 @@ class WorkoutFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     @Throws(ParseException::class)
     fun getDateWithoutTimeUsingFormat(): Date? {
-        val formatter = SimpleDateFormat("dd/MM/yyyy")
+        val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ssZ")
         return formatter.parse(formatter.format(Date()))
     }
 

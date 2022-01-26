@@ -42,6 +42,8 @@
     <string name="workouts">Workouts:</string>
     <string name="points">Points:</string>
     <string name="note">Note:</string>
+    <string name="load_kg">Load [kg]</string>
+    <string name="reps">Reps</string>
     <string-array name="planets_array">
         <item>Mercury</item>
         <item>Venus</item>

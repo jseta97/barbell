@@ -7,6 +7,7 @@ object ExerciseContract {
         const val UUID = "uuid"
         const val NAME = "name"
         const val DESCRIPTION = "description"
+        const val BODYPART = "bodyPart"
         const val URL = "url"
     }
 }

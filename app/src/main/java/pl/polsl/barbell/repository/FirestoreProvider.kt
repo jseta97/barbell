@@ -1,6 +1,7 @@
 package pl.polsl.barbell.repository
 
 import android.util.Log
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
@@ -56,6 +57,29 @@ class FirestoreProvider private constructor() {
                         callback(value?.toObject<User>())
                     }
                 }
+    }
+
+
+    fun addWeight(weight: Weight) {
+        db.collection(WeightContract.COLLECTION_NAME).add(weight)
+    }
+
+    fun getWeightList(userUuid: String, callback: (List<Weight>?) -> Unit) {
+        db.collection(WeightContract.COLLECTION_NAME)
+            .whereEqualTo(WeightContract.Fields.USERUUID, userUuid)
+            .get()
+            .addOnSuccessListener { documents ->
+                val weight : ArrayList<Weight> = ArrayList()
+                for (document in documents) {
+                    Log.d(TAG, "${document.id} => ${document.data}")
+                    weight.add(document.toObject())
+                }
+                callback(weight)
+            }
+            .addOnFailureListener {
+                Log.w(TAG, "Listen failed.", it.cause)
+                callback(null)
+            }
     }
 
     fun addExercise(exercise: Exercise) {

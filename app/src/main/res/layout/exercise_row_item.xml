@@ -61,7 +61,7 @@
                     android:layout_height="wrap_content"
                     android:padding="2dp"
                     android:textSize="20sp"
-                    android:text="@{Exercise.description}" />
+                    android:text="@{Exercise.bodyPart}" />
             </LinearLayout>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>

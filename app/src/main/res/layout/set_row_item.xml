@@ -49,8 +49,9 @@
                 android:layout_height="match_parent"
                 android:autofillHints=""
                 android:inputType="number"
+                android:hint="@string/load_kg"
                 android:padding="2dp"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:text="@{Set.load.toString()}" />
 
             <EditText
@@ -59,7 +60,8 @@
                 android:layout_weight="35"
                 android:layout_height="match_parent"
                 android:inputType="number"
-                android:textSize="20sp"
+                android:hint="@string/reps"
+                android:textSize="16sp"
                 android:text="@{Set.reps.toString()}" />
 
             <Button

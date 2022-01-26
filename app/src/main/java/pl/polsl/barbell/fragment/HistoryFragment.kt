@@ -87,6 +87,7 @@ class HistoryFragment : Fragment() {
                                 Random.nextInt(0, 100).toString(),
                                 "Squat" + Random.nextInt(0, 100).toString(),
                                 "Best exercise",
+                                "Legs",
                                 Random.nextInt(0, 100).toString()
                         ).build(), arrayListOf(Set.Builder(3).build(), Set.Builder(4).build())
                 ).build(),
@@ -95,6 +96,7 @@ class HistoryFragment : Fragment() {
                                         Random.nextInt(0, 100).toString(),
                                         "Deadlift" + Random.nextInt(0, 100).toString(),
                                         "Best exercise also",
+                                        "Legs",
                                         Random.nextInt(0, 100).toString()
                                 ).build(), arrayListOf(Set.Builder(4).build(), Set.Builder(5).build(), Set.Builder(6).build(), Set.Builder(7).build())
                         ).build()),

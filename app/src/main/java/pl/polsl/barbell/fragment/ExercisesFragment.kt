@@ -81,6 +81,7 @@ class ExercisesFragment : Fragment() {
                 Random.nextInt(0, 100).toString(),
                 "Bench" + Random.nextInt(0, 100).toString(),
                 "Description" + Random.nextInt(0, 100).toString(),
+                "Legs",
                 Random.nextInt(0, 100).toString()
         ).build()
     }
