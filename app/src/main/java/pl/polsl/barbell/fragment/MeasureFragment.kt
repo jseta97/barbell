@@ -2,6 +2,7 @@ package pl.polsl.barbell.fragment
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
@@ -49,6 +50,7 @@ class MeasureFragment : Fragment() {
         }
         binding.addWeight.setOnClickListener {
             measureViewModel.addWeight(createWeight())
+            Toast.makeText(context, "Added", Toast.LENGTH_SHORT).show()
         }
         return binding.root
     }
