@@ -25,8 +25,6 @@ class MainActivity : AppCompatActivity() {
 
         val navController = findNavController(R.id.nav_host_fragment)
         checkUser(navController)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
                 setOf(
                         R.id.navigation_profile,
@@ -49,9 +47,6 @@ class MainActivity : AppCompatActivity() {
                     val intent = Intent(this, SignInActivity::class.java)
                     startActivity(intent)
                 }
-                /*viewModel.authenticatedUser.value == null -> {
-                    navController.navigate(R.id.action_navigation_profile_to_settingsFragment)
-                }*/
             }
 
         }
