@@ -26,21 +26,17 @@ class WeightChartFragment(private val list: ArrayList<Weight>) : Fragment() {
     }
 
     class CanadaChart(context: Context, private val list: ArrayList<pl.polsl.barbell.model.Weight>) : VizContainerView(context) {
-
         val vizSize = 500.0
-
         private val chart: Chart<pl.polsl.barbell.model.Weight> = chart(list) {
             size = Size(vizSize, vizSize)
             title = "Weight (kg)"
-
-            // Create a discrete dimension for the year of the census
+            // Create a discrete dimension for the date of measure
             val date = discrete({ "Day: ".plus(domain.date?.date.toString())
                 .plus("/").plus(domain.date?.hours.toString())
                 .plus(":").plus(domain.date?.minutes.toString())
                 .plus(":").plus(domain.date?.seconds.toString())
             })
-
-            // Create a continuous numeric dimension for the population
+            // Create a continuous numeric dimension for the weight
             val weight = quantitative({ domain.value }) {
                 name = "Weight (kg)"
             }
