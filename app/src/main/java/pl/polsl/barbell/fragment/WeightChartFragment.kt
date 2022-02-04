@@ -25,9 +25,9 @@ class WeightChartFragment(private val list: ArrayList<Weight>) : Fragment() {
         return CanadaChart(requireContext(), list)
     }
 
-    class CanadaChart(context: Context, private val list: ArrayList<pl.polsl.barbell.model.Weight>) : VizContainerView(context) {
+    class CanadaChart(context: Context, private val list: ArrayList<Weight>) : VizContainerView(context) {
         val vizSize = 500.0
-        private val chart: Chart<pl.polsl.barbell.model.Weight> = chart(list) {
+        private val chart: Chart<Weight> = chart(list) {
             size = Size(vizSize, vizSize)
             title = "Weight (kg)"
             // Create a discrete dimension for the date of measure
