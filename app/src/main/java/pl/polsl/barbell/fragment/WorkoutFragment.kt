@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import pl.polsl.barbell.Observer
 import pl.polsl.barbell.R
 import pl.polsl.barbell.adapter.ExercisesSpinnerAdapter
 import pl.polsl.barbell.adapter.WorkoutAdapter
@@ -115,9 +116,13 @@ class WorkoutFragment : Fragment(), AdapterView.OnItemSelectedListener {
         selectedExercise = parent.getItemAtPosition(1) as Exercise
     }
 
-    inner class DeleteExercise(){
+    inner class DeleteExercise() : Observer{
         fun delete(position: Int){
             workoutViewModel.removeExercise(position)
+        }
+
+        override fun update(position: Int) {
+            delete(position)
         }
     }
 }

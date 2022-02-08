@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import pl.polsl.barbell.Observer
 import pl.polsl.barbell.R
 import pl.polsl.barbell.fragment.WorkoutFragment
 import pl.polsl.barbell.model.ExercisesWithSets
@@ -12,7 +13,7 @@ import pl.polsl.barbell.model.Set
 
 class WorkoutAdapter(
     private val exercisesList: ArrayList<ExercisesWithSets>,
-    private val deleteExercise: WorkoutFragment.DeleteExercise
+    private val observer: Observer
 ) :
     RecyclerView.Adapter<WorkoutViewHolder>(), ItemClickListener {
 
@@ -80,6 +81,6 @@ class WorkoutAdapter(
     fun delete(position: Int){
         exercisesList.removeAt(position)
         notifyItemRemoved(position)
-        deleteExercise.delete(position)
+        observer.update(position)
     }
 }
