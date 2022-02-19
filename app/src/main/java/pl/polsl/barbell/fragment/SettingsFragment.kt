@@ -7,6 +7,11 @@ import androidx.preference.PreferenceFragmentCompat
 import pl.polsl.barbell.R
 
 
+/**
+ * Settings fragment
+ *
+ * @constructor Create empty Settings fragment
+ */
 class SettingsFragment : PreferenceFragmentCompat() {
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {

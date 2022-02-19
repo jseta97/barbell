@@ -9,6 +9,13 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import pl.polsl.barbell.R
 
+/**
+ * Exercises spinner adapter
+ *
+ * @property context
+ * @property dataSource
+ * @constructor Create empty Exercises spinner adapter
+ */
 class ExercisesSpinnerAdapter(val context: Context, var dataSource: List<Exercise>) : BaseAdapter() {
     private val inflater: LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 

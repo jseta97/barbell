@@ -10,11 +10,22 @@ import androidx.recyclerview.widget.RecyclerView
 import pl.polsl.barbell.R
 import pl.polsl.barbell.model.Exercise
 
+/**
+ * Exercises adapter
+ *
+ * @property exercisesList
+ * @constructor Create empty Exercises adapter
+ */
 class ExercisesAdapter(private val exercisesList: ArrayList<Exercise>) :
         RecyclerView.Adapter<ExerciseViewHolder>(), ItemClickListener {
 
     var navController: NavController? = null
 
+    /**
+     * Update exercises list
+     *
+     * @param newExercisesList
+     */
     fun updateExercisesList(newExercisesList: List<Exercise>) {
         exercisesList.clear()
         exercisesList.addAll(newExercisesList)

@@ -21,6 +21,11 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
+/**
+ * Measure fragment
+ *
+ * @constructor Create empty Measure fragment
+ */
 class MeasureFragment : Fragment() {
 
     protected var _binding: FragmentMeasureBinding? = null
@@ -63,6 +68,11 @@ class MeasureFragment : Fragment() {
         ).build()
     }
 
+    /**
+     * Get date without time using format
+     *
+     * @return
+     */
     @Throws(ParseException::class)
     fun getDateWithoutTimeUsingFormat(): Date? {
         val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ssZ")
@@ -78,6 +88,10 @@ class MeasureFragment : Fragment() {
         inflater.inflate(R.menu.measure_menu, menu)
     }
 
+    /**
+     * Observe view model
+     *
+     */
     protected fun observeViewModel() {
         measureViewModel.getWeightList(firebaseAuth.currentUser!!.uid)
         measureViewModel.weightList.observe(viewLifecycleOwner) {
@@ -90,10 +104,22 @@ class MeasureFragment : Fragment() {
     }
 
 
+    /**
+     * Reverse list
+     *
+     * @param list
+     * @return
+     */
     fun reverseList(list: List<Weight>): List<Weight> {
         return list.reversed()
     }
 
+    /**
+     * Get sorted list
+     *
+     * @param list
+     * @return
+     */
     fun getSortedList(list: List<Weight>): List<Weight>? {
         var sortedList : MutableList<Weight> = mutableListOf()
         sortedList.addAll(list)

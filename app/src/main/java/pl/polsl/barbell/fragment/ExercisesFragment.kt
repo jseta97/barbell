@@ -13,6 +13,11 @@ import pl.polsl.barbell.model.Exercise
 import pl.polsl.barbell.viewModel.ExercisesViewModel
 import kotlin.random.Random
 
+/**
+ * Exercises fragment
+ *
+ * @constructor Create empty Exercises fragment
+ */
 class ExercisesFragment : Fragment() {
 
     protected var _binding: FragmentExercisesBinding? = null
@@ -69,6 +74,10 @@ class ExercisesFragment : Fragment() {
         }
     }
 
+    /**
+     * Observe view model
+     *
+     */
     protected fun observeViewModel() {
         exercisesViewModel.getExercises()
         exercisesViewModel.exercisesList.observe(viewLifecycleOwner) {
@@ -76,6 +85,11 @@ class ExercisesFragment : Fragment() {
         }
     }
 
+    /**
+     * Generate random
+     *
+     * @return
+     */
     fun generateRandom(): Exercise {
         return Exercise.Builder(
                 Random.nextInt(0, 100).toString(),

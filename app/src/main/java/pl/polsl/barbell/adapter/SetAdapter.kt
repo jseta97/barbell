@@ -15,6 +15,12 @@ import pl.polsl.barbell.model.Set
 import java.lang.NumberFormatException
 
 
+/**
+ * Set adapter
+ *
+ * @property setsList
+ * @constructor Create empty Set adapter
+ */
 class SetAdapter(private val setsList: ArrayList<Set>) : RecyclerView.Adapter<SetAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup,
                                     viewType: Int): ViewHolder {
@@ -41,12 +47,26 @@ class SetAdapter(private val setsList: ArrayList<Set>) : RecyclerView.Adapter<Se
         return setsList.size
     }
 
+    /**
+     * Delete
+     *
+     * @param position
+     */
     fun delete(position: Int){
         setsList.removeAt(position)
         setsList.forEachIndexed { index, set ->  set.setCounter=index.plus(1)}
         notifyDataSetChanged()
     }
 
+    /**
+     * View holder
+     *
+     * @constructor
+     *
+     * @param v
+     * @param repsEditTextListener
+     * @param loadEditTextListener
+     */
     class ViewHolder(v: View, repsEditTextListener: RepsEditTextListener, loadEditTextListener: LoadEditTextListener) : RecyclerView.ViewHolder(v) {
         var repsTextView: EditText
         var loadTextView: EditText
@@ -67,8 +87,19 @@ class SetAdapter(private val setsList: ArrayList<Set>) : RecyclerView.Adapter<Se
         }
     }
 
+    /**
+     * Reps edit text listener
+     *
+     * @constructor Create empty Reps edit text listener
+     */
     inner class RepsEditTextListener : TextWatcher {
         private var position = 0
+
+        /**
+         * Update position
+         *
+         * @param position
+         */
         fun updatePosition(position: Int) {
             this.position = position
         }
@@ -92,8 +123,19 @@ class SetAdapter(private val setsList: ArrayList<Set>) : RecyclerView.Adapter<Se
         }
     }
 
+    /**
+     * Load edit text listener
+     *
+     * @constructor Create empty Load edit text listener
+     */
     inner class LoadEditTextListener : TextWatcher {
         private var position = 0
+
+        /**
+         * Update position
+         *
+         * @param position
+         */
         fun updatePosition(position: Int) {
             this.position = position
         }

@@ -20,6 +20,11 @@ import pl.polsl.barbell.viewModel.HistoryViewModel
 import java.util.*
 import kotlin.random.Random
 
+/**
+ * History fragment
+ *
+ * @constructor Create empty History fragment
+ */
 class HistoryFragment : Fragment() {
 
     protected var _binding: FragmentHistoryBinding? = null
@@ -71,6 +76,10 @@ class HistoryFragment : Fragment() {
         }
     }
 
+    /**
+     * Observe view model
+     *
+     */
     protected fun observeViewModel() {
         historyViewModel.getWorkouts(firebaseAuth.currentUser!!.uid)
         historyViewModel.workoutList.observe(viewLifecycleOwner) {
@@ -78,6 +87,11 @@ class HistoryFragment : Fragment() {
         }
     }
 
+    /**
+     * Generate random
+     *
+     * @return
+     */
     fun generateRandom(): Workout {
         return Workout.Builder(
                 "userUuid",

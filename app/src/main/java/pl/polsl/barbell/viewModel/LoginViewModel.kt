@@ -9,20 +9,81 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
+/**
+ * Login view model
+ *
+ * @constructor
+ *
+ * @param application
+ */
 class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
+    /**
+     * Register result listener
+     *
+     * @constructor Create empty Register result listener
+     */
     interface RegisterResultListener {
+        /**
+         * On success
+         *
+         * @param uuid
+         */
         fun onSuccess(uuid: String)
+
+        /**
+         * On email malformed
+         *
+         */
         fun onEmailMalformed()
+
+        /**
+         * On password too short
+         *
+         */
         fun onPasswordTooShort()
+
+        /**
+         * On password not matched
+         *
+         */
         fun onPasswordNotMatched()
+
+        /**
+         * On user already exists
+         *
+         */
         fun onUserAlreadyExists()
     }
 
+    /**
+     * Login result listener
+     *
+     * @constructor Create empty Login result listener
+     */
     interface LoginResultListener {
+        /**
+         * On success
+         *
+         */
         fun onSuccess()
+
+        /**
+         * On user not exists
+         *
+         */
         fun onUserNotExists()
+
+        /**
+         * On wrong password
+         *
+         */
         fun onWrongPassword()
+
+        /**
+         * On empty credentials
+         *
+         */
         fun onEmptyCredentials()
     }
 
@@ -32,14 +93,30 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
     private lateinit var registerListener: RegisterResultListener
 
+    /**
+     * Set register result listener
+     *
+     * @param listener
+     */
     fun setRegisterResultListener(listener: RegisterResultListener) {
         registerListener = listener
     }
 
+    /**
+     * Set login result listener
+     *
+     * @param listener
+     */
     fun setLoginResultListener(listener: LoginResultListener) {
         loginListener = listener
     }
 
+    /**
+     * Sign in with email and password
+     *
+     * @param email
+     * @param password
+     */
     fun signInWithEmailAndPassword(email: String, password: String) {
         if (email.isNotEmpty() || password.isNotEmpty()) {
             firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
@@ -57,6 +134,13 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    /**
+     * Register user with email and password
+     *
+     * @param email
+     * @param password
+     * @param repeatedPassword
+     */
     fun registerUserWithEmailAndPassword(
             email: String,
             password: String,

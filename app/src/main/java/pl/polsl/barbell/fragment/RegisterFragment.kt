@@ -12,6 +12,11 @@ import pl.polsl.barbell.MainActivity
 import pl.polsl.barbell.databinding.FragmentRegisterBinding
 import pl.polsl.barbell.viewModel.LoginViewModel
 
+/**
+ * Register fragment
+ *
+ * @constructor Create empty Register fragment
+ */
 class RegisterFragment : Fragment(), LoginViewModel.RegisterResultListener {
 
     private var _binding: FragmentRegisterBinding? = null

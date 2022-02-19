@@ -8,6 +8,11 @@ import com.google.android.material.tabs.TabLayoutMediator
 import pl.polsl.barbell.adapter.SignInPagerAdapter
 import pl.polsl.barbell.databinding.ActivitySignInBinding
 
+/**
+ * Sign in activity
+ *
+ * @constructor Create empty Sign in activity
+ */
 class SignInActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySignInBinding

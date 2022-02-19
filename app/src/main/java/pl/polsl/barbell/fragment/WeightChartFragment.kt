@@ -15,6 +15,12 @@ import io.data2viz.geom.Size
 import io.data2viz.viz.VizContainerView
 import pl.polsl.barbell.model.Weight
 
+/**
+ * Weight chart fragment
+ *
+ * @property list
+ * @constructor Create empty Weight chart fragment
+ */
 class WeightChartFragment(private val list: ArrayList<Weight>) : Fragment() {
 
     override fun onCreateView(
@@ -25,6 +31,14 @@ class WeightChartFragment(private val list: ArrayList<Weight>) : Fragment() {
         return CanadaChart(requireContext(), list)
     }
 
+    /**
+     * Canada chart
+     *
+     * @property list
+     * @constructor
+     *
+     * @param context
+     */
     class CanadaChart(context: Context, private val list: ArrayList<Weight>) : VizContainerView(context) {
         val vizSize = 500.0
         private val chart: Chart<Weight> = chart(list) {

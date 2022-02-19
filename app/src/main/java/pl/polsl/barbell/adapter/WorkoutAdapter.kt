@@ -11,6 +11,13 @@ import pl.polsl.barbell.fragment.WorkoutFragment
 import pl.polsl.barbell.model.ExercisesWithSets
 import pl.polsl.barbell.model.Set
 
+/**
+ * Workout adapter
+ *
+ * @property exercisesList
+ * @property observer
+ * @constructor Create empty Workout adapter
+ */
 class WorkoutAdapter(
     private val exercisesList: ArrayList<ExercisesWithSets>,
     private val observer: Observer
@@ -20,6 +27,11 @@ class WorkoutAdapter(
     private var viewPool = RecyclerView.RecycledViewPool()
 
 
+    /**
+     * Update exercises list
+     *
+     * @param newExercisesList
+     */
     fun updateExercisesList(newExercisesList: List<ExercisesWithSets>) {
         exercisesList.clear()
         exercisesList.addAll(newExercisesList)
@@ -66,6 +78,12 @@ class WorkoutAdapter(
     }
 
 
+    /**
+     * Add set
+     *
+     * @param set
+     * @param position
+     */
     fun addSet(set: Set, position: Int) {
         val sets: ArrayList<Set> = arrayListOf()
         if (exercisesList[position].sets != null) {
@@ -78,6 +96,11 @@ class WorkoutAdapter(
         }
     }
 
+    /**
+     * Delete
+     *
+     * @param position
+     */
     fun delete(position: Int){
         exercisesList.removeAt(position)
         notifyItemRemoved(position)

@@ -25,6 +25,11 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
+/**
+ * Workout fragment
+ *
+ * @constructor Create empty Workout fragment
+ */
 class WorkoutFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     protected var _binding: FragmentWorkoutBinding? = null
@@ -102,6 +107,11 @@ class WorkoutFragment : Fragment(), AdapterView.OnItemSelectedListener {
         ).build()
     }
 
+    /**
+     * Get date without time using format
+     *
+     * @return
+     */
     @Throws(ParseException::class)
     fun getDateWithoutTimeUsingFormat(): Date? {
         val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ssZ")
@@ -116,7 +126,17 @@ class WorkoutFragment : Fragment(), AdapterView.OnItemSelectedListener {
         selectedExercise = parent.getItemAtPosition(1) as Exercise
     }
 
+    /**
+     * Delete exercise
+     *
+     * @constructor Create empty Delete exercise
+     */
     inner class DeleteExercise() : Observer{
+        /**
+         * Delete
+         *
+         * @param position
+         */
         fun delete(position: Int){
             workoutViewModel.removeExercise(position)
         }

@@ -14,6 +14,11 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import pl.polsl.barbell.viewModel.ProfileViewModel
 
+/**
+ * Main activity
+ *
+ * @constructor Create empty Main activity
+ */
 class MainActivity : AppCompatActivity() {
 
     private val viewModel: ProfileViewModel by viewModels()

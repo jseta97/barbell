@@ -5,6 +5,13 @@ import androidx.recyclerview.widget.RecyclerView
 import pl.polsl.barbell.databinding.WeightRowItemBinding
 import pl.polsl.barbell.databinding.WorkoutRowItemBinding
 
+/**
+ * Weight view holder
+ *
+ * @constructor
+ *
+ * @param itemView
+ */
 class WeightViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val binding: WeightRowItemBinding by lazy { WeightRowItemBinding.bind(itemView) }
 }

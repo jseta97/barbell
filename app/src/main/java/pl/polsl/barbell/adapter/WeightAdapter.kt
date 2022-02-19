@@ -7,12 +7,23 @@ import androidx.recyclerview.widget.RecyclerView
 import pl.polsl.barbell.R
 import pl.polsl.barbell.model.Weight
 
+/**
+ * Weight adapter
+ *
+ * @property weightList
+ * @constructor Create empty Weight adapter
+ */
 class WeightAdapter(
     private val weightList: ArrayList<Weight>
 ) :
     RecyclerView.Adapter<WeightViewHolder>(), ItemClickListener {
 
 
+    /**
+     * Update weight list
+     *
+     * @param newWeightList
+     */
     fun updateWeightList(newWeightList: List<Weight>) {
         weightList.clear()
         weightList.addAll(newWeightList)

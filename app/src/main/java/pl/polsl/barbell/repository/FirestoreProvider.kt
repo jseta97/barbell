@@ -11,15 +11,32 @@ import pl.polsl.barbell.model.*
 
 private const val TAG = "FirestoreProvider"
 
+/**
+ * Firestore provider
+ *
+ * @constructor Create empty Firestore provider
+ */
 class FirestoreProvider private constructor() {
 
     private val db = Firebase.firestore
     private val storage = FirebaseStorage.getInstance()
 
+    /**
+     * Add user
+     *
+     * @param user
+     */
     fun addUser(user: User) {
         db.collection(UsersContract.COLLECTION_NAME).document(user.uuid!!).set(user)
     }
 
+    /**
+     * Get user
+     *
+     * @param uuid
+     * @param callback
+     * @receiver
+     */
     fun getUser(uuid: String, callback: (User?) -> Unit) {
         db.collection(UsersContract.COLLECTION_NAME).document(uuid).get().addOnCompleteListener {
             var user: User? = null
@@ -32,6 +49,11 @@ class FirestoreProvider private constructor() {
         }
     }
 
+    /**
+     * Update user
+     *
+     * @param user
+     */
     fun updateUser(user: User) {
         db.collection(UsersContract.COLLECTION_NAME).document(user.uuid!!).get().addOnCompleteListener {
             if (it.isSuccessful) {
@@ -45,6 +67,13 @@ class FirestoreProvider private constructor() {
         }
     }
 
+    /**
+     * Listen for user
+     *
+     * @param uuid
+     * @param callback
+     * @receiver
+     */
     fun listenForUser(uuid: String, callback: (User?) -> Unit) {
         db.collection(UsersContract.COLLECTION_NAME)
                 .document(uuid)
@@ -60,10 +89,22 @@ class FirestoreProvider private constructor() {
     }
 
 
+    /**
+     * Add weight
+     *
+     * @param weight
+     */
     fun addWeight(weight: Weight) {
         db.collection(WeightContract.COLLECTION_NAME).add(weight)
     }
 
+    /**
+     * Get weight list
+     *
+     * @param userUuid
+     * @param callback
+     * @receiver
+     */
     fun getWeightList(userUuid: String, callback: (List<Weight>?) -> Unit) {
         db.collection(WeightContract.COLLECTION_NAME)
             .whereEqualTo(WeightContract.Fields.USERUUID, userUuid)
@@ -82,6 +123,11 @@ class FirestoreProvider private constructor() {
             }
     }
 
+    /**
+     * Add exercise
+     *
+     * @param exercise
+     */
     fun addExercise(exercise: Exercise) {
         db.collection(ExerciseContract.COLLECTION_NAME).add(exercise)
     }
@@ -98,6 +144,13 @@ class FirestoreProvider private constructor() {
         }
     }*/
 
+    /**
+     * Get exercise
+     *
+     * @param uuid
+     * @param callback
+     * @receiver
+     */
     fun getExercise(uuid: String, callback: (List<Exercise>?) -> Unit) {
         db.collection(ExerciseContract.COLLECTION_NAME)
                 .whereEqualTo(ExerciseContract.Fields.UUID, uuid)
@@ -116,6 +169,12 @@ class FirestoreProvider private constructor() {
                 }
     }
 
+    /**
+     * Get exercises
+     *
+     * @param callback
+     * @receiver
+     */
     fun getExercises(callback: (List<Exercise>?) -> Unit) {
         db.collection(ExerciseContract.COLLECTION_NAME).get().addOnSuccessListener { documents ->
             val exercises: ArrayList<Exercise> = ArrayList()
@@ -131,10 +190,22 @@ class FirestoreProvider private constructor() {
                 }
     }
 
+    /**
+     * Add workout
+     *
+     * @param workout
+     */
     fun addWorkout(workout: Workout) {
         db.collection(WorkoutContract.COLLECTION_NAME).add(workout)
     }
 
+    /**
+     * Get workout
+     *
+     * @param uuid
+     * @param callback
+     * @receiver
+     */
     fun getWorkout(uuid: String, callback: (Workout?) -> Unit) {
         db.collection(WorkoutContract.COLLECTION_NAME).document(uuid).get().addOnCompleteListener {
             var workout: Workout? = null
@@ -147,6 +218,12 @@ class FirestoreProvider private constructor() {
         }
     }
 
+    /**
+     * Get workouts
+     *
+     * @param callback
+     * @receiver
+     */
     fun getWorkouts(callback: (List<Workout>?) -> Unit) {
         db.collection(WorkoutContract.COLLECTION_NAME).get().addOnSuccessListener { documents ->
             val workouts: ArrayList<Workout> = ArrayList()
@@ -162,6 +239,13 @@ class FirestoreProvider private constructor() {
                 }
     }
 
+    /**
+     * Get user workouts
+     *
+     * @param userUuid
+     * @param callback
+     * @receiver
+     */
     fun getUserWorkouts(userUuid: String, callback: (List<Workout>?) -> Unit) {
         db.collection(WorkoutContract.COLLECTION_NAME)
                 .whereEqualTo(WorkoutContract.Fields.USERUUID, userUuid)

@@ -9,6 +9,11 @@ import pl.polsl.barbell.model.User
 import pl.polsl.barbell.model.Workout
 import pl.polsl.barbell.repository.FirestoreProvider
 
+/**
+ * Profile view model
+ *
+ * @constructor Create empty Profile view model
+ */
 class ProfileViewModel : ViewModel() {
 
     private val _authenticatedUser = MutableLiveData<User>()
@@ -23,6 +28,13 @@ class ProfileViewModel : ViewModel() {
     val points: LiveData<Int>
         get() = _points
 
+    /**
+     * Set user
+     *
+     * @param uuid
+     * @param callback
+     * @receiver
+     */
     fun setUser(uuid: String, callback: () -> Any?) {
         FirestoreProvider.instance.listenForUser(uuid) {
             if (it != null) {
@@ -34,6 +46,11 @@ class ProfileViewModel : ViewModel() {
         }
     }
 
+    /**
+     * Set user details
+     *
+     * @param uuid
+     */
     fun setUserDetails(uuid: String) {
         if (_authenticatedUser.value == null) {
             val user = User.Builder(uuid, Firebase.auth.currentUser?.email.toString()).build()
@@ -46,8 +63,9 @@ class ProfileViewModel : ViewModel() {
     }
 
     /**
-     * @param user - user with proper uuid to be saved
-     * @param isFresh - [true] if user is being saved first time, [false] if user is being updated
+     * Save user
+     *
+     * @param user
      */
 
     fun saveUser(user: User) {
@@ -55,16 +73,30 @@ class ProfileViewModel : ViewModel() {
         _authenticatedUser.postValue(user)
     }
 
+    /**
+     * Sign out
+     *
+     */
     fun signOut() {
         Firebase.auth.signOut()
     }
 
+    /**
+     * Get workout count
+     *
+     * @param userUuid
+     */
     fun getWorkoutCount(userUuid: String) {
         FirestoreProvider.instance.getUserWorkouts(userUuid) {
             _workoutCount.postValue(it?.size)
         }
     }
 
+    /**
+     * Get points
+     *
+     * @param userUuid
+     */
     fun getPoints(userUuid: String){
         FirestoreProvider.instance.getUserWorkouts(userUuid) {
             var p = 0

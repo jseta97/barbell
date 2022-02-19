@@ -7,9 +7,20 @@ import androidx.recyclerview.widget.RecyclerView
 import pl.polsl.barbell.R
 import pl.polsl.barbell.model.ExercisesWithSets
 
+/**
+ * Exercises with sets adapter
+ *
+ * @property exercisesList
+ * @constructor Create empty Exercises with sets adapter
+ */
 class ExercisesWithSetsAdapter(private val exercisesList: ArrayList<ExercisesWithSets>) :
         RecyclerView.Adapter<ExercisesWithSetsViewHolder>(), ItemClickListener {
 
+    /**
+     * Update exercises list
+     *
+     * @param newExercisesList
+     */
     fun updateExercisesList(newExercisesList: List<ExercisesWithSets>) {
         exercisesList.clear()
         exercisesList.addAll(newExercisesList)

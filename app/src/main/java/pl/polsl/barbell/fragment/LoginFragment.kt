@@ -13,6 +13,11 @@ import pl.polsl.barbell.MainActivity
 import pl.polsl.barbell.databinding.FragmentLoginBinding
 import pl.polsl.barbell.viewModel.LoginViewModel
 
+/**
+ * Login fragment
+ *
+ * @constructor Create empty Login fragment
+ */
 class LoginFragment : Fragment(), LoginViewModel.LoginResultListener {
 
     private var _binding: FragmentLoginBinding? = null

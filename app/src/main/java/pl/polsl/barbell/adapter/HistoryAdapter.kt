@@ -11,11 +11,22 @@ import pl.polsl.barbell.R
 import pl.polsl.barbell.model.Workout
 
 
+/**
+ * History adapter
+ *
+ * @property workoutList
+ * @constructor Create empty History adapter
+ */
 class HistoryAdapter(private val workoutList: ArrayList<Workout>) :
         RecyclerView.Adapter<HistoryViewHolder>(), ItemClickListener {
 
     private var viewPool = RecycledViewPool()
 
+    /**
+     * Update workout list
+     *
+     * @param newWorkoutList
+     */
     fun updateWorkoutList(newWorkoutList: List<Workout>) {
         workoutList.clear()
         workoutList.addAll(newWorkoutList)

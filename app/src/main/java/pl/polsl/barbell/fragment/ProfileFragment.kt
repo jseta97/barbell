@@ -17,6 +17,11 @@ import pl.polsl.barbell.databinding.FragmentProfileBinding
 import pl.polsl.barbell.model.User
 import pl.polsl.barbell.viewModel.ProfileViewModel
 
+/**
+ * Profile fragment
+ *
+ * @constructor Create empty Profile fragment
+ */
 class ProfileFragment : Fragment() {
 
     protected var _binding: FragmentProfileBinding? = null

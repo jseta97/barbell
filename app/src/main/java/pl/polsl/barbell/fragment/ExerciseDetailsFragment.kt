@@ -10,6 +10,11 @@ import pl.polsl.barbell.R
 import pl.polsl.barbell.databinding.FragmentExerciseDetailsBinding
 import pl.polsl.barbell.viewModel.ExerciseDetailsViewModel
 
+/**
+ * Exercise details fragment
+ *
+ * @constructor Create empty Exercise details fragment
+ */
 class ExerciseDetailsFragment() : Fragment() {
 
     protected var _binding: FragmentExerciseDetailsBinding? = null
@@ -34,6 +39,11 @@ class ExerciseDetailsFragment() : Fragment() {
         }
     }
 
+    /**
+     * Observe view model
+     *
+     * @param uuid
+     */
     protected fun observeViewModel(uuid: String) {
         exerciseDetailsViewModel.getExercise(uuid)
         exerciseDetailsViewModel.exercise.observe(viewLifecycleOwner) {
